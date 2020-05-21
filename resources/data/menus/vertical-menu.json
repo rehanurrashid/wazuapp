@@ -1,0 +1,90 @@
+{
+  "menu": [
+    {
+      "url": "#",
+      "name": "Dashboard",
+      "i18n": "Dashboard",
+      "icon": "desktop",
+      "tag": "1",
+      "tagcustom": "badge badge-light-danger badge-pill badge-round float-right mr-2",
+      "submenu": [
+        {
+          "url": "/dashboard-ecommerce",
+          "name": "eCommerce",
+          "i18n": "eCommerce",
+          "icon": "bx bx-right-arrow-alt"
+        }
+      ]
+    },
+        {
+      "navheader": "Manage"
+    },
+    {
+      "url": "page-user-profile",
+      "name": "User Profile",
+      "i18n": "User Profile",
+      "icon": "user"
+    },
+    {
+      "url": "manage_vendors",
+      "name": "Vendors",
+      "i18n": "Vendors",
+      "icon": "users"
+    },
+    {
+      "url": "customers",
+      "name": "Customers",
+      "i18n": "Customers",
+      "icon": "users"
+    },
+    {
+      "url": "products",
+      "name": "Products",
+      "i18n": "Products",
+      "icon": "tablet"
+    },
+    {
+      "url": "recipes",
+      "name": "Recipes",
+      "i18n": "Recipes",
+      "icon": "tag"
+    },
+    {
+      "url": "popular_products",
+      "name": "Popular Products",
+      "i18n": "Popular Products",
+      "icon": "morph-bookmark"
+    },
+    {
+      "url": "messages",
+      "name": "Messages",
+      "i18n": "Messages",
+      "icon": "bell"
+    },
+    {
+      "url": "categories",
+      "name": "Categories",
+      "i18n": "Categories",
+      "icon": "grid"
+    },
+    {
+      "url": "plans",
+      "name": "Plans",
+      "i18n": "Plans",
+      "icon": "us-dollar"
+    },
+    {
+      "url": "ProductRequests",
+      "name": "Product Request",
+      "i18n": "Product Request",
+      "icon": "bell"
+    },
+    {
+      "url": "https://pixinvent.com/demo/frest-clean-bootstrap-admin-dashboard-template/documentation",
+      "name": "Documentation",
+      "i18n": "Documentation",
+      "icon": "morph-folder",
+      "newTab":"_blank"
+    }
+  ]
+}
