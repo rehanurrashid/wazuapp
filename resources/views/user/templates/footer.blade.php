@@ -40,7 +40,8 @@
             <div class="col-md-3 mt-3 mb-4">
               <div class="right-left">
                 <h5 class="mb-4 font-weight-bold text-white">Download Links</h5>
-                <img src="images/app store.png" class="img-fluid mt-3">
+                <a href="{{url('https://apps.apple.com/us/app/wazu/id1511788564')}}" target="_blank"><img src="images/app store.png" class="img-fluid mt-3">
+                </a>
             </div>
           </div>
         </div>

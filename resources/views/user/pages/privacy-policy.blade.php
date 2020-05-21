@@ -146,26 +146,6 @@
             </div>
         </div>
 
-        <div class="testimonials-area bg-gray section-ptb">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class=" testimonials-area">
-                            <div class="row testimonial-two">
-                                <h1 class="text-center mt-20 mb-20"
-                                    style="font-size: 36px; font-weight: 500; color: #000;">
-                                    We’re Here to Help !
-                                    <a class="theme-color" style="text-decoration: underline;"
-                                                      href="#">
-                                        Contact us
-                                    </a>
-                                </h1>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </main>
     <!--// Page Conttent -->
 @include('user.templates.footer')

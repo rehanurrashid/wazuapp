@@ -68,6 +68,13 @@ class HomeController extends Controller
         return view('user.pages.terms_conditions',compact('plans'));
     }
 
+     //privacy-policy
+    public function contact_us()
+    {
+        $plans = Plan::latest()->limit(3)->orderBy('id', 'desc')->get();
+        return view('user.pages.contact-us',compact('plans'));
+    }
+
     public function send_notification(){
 
         OneSignal::sendNotificationToAll(

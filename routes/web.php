@@ -210,3 +210,4 @@ Route::post('/register', 'UserActionController@register')->name('register');
 Route::post('/activate-plan', 'UserActionController@activate_plan')->name('activate-plan');
 Route::get('privacy-policy', 'HomeController@privacy_policy')->name('privacy-policy');
 Route::get('terms-conditions', 'HomeController@terms_conditions')->name('terms-conditions');
+Route::get('contact-us', 'HomeController@contact_us')->name('contact-us');

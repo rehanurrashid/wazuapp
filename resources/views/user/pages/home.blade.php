@@ -41,8 +41,8 @@
                 <p class="text-white font-style-1 text-top">Help customers recognize your products, extend customer lifetime value through customizable brand experiences and direct them directly to your website or social media channels.</p>
               </div>
               <div class="left-center mt-4">
-                <button class="btn btn-dark btn-b text-capitalize rounded">contact us</button>
-              <button class="btn btn-dark btn-b ml-3 text-capitalize rounded">download</button>
+                <a class="btn btn-dark btn-b text-capitalize rounded text-light"  href="{{route('contact-us')}}">contact us</a>
+              <a class="btn btn-dark btn-b ml-3 text-capitalize rounded text-light" href="{{url('https://apps.apple.com/us/app/wazu/id1511788564')}}" target="_blank">download</a>
             </div>
             </div>
             <div class="col-md-5">
