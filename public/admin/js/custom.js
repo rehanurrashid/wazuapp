@@ -5,7 +5,7 @@
  *  Place here all your custom js. Make sure it's loaded after app.js
  *
  * ---------------------------------------------------------------------------- */
-const myurl = "http://127.0.0.1:8000";
+const myurl = "https://wazuapp.com";
 function load(method,url,responseId) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
