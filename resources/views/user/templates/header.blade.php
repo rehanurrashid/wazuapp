@@ -23,7 +23,10 @@
                 <a class="nav-link text-nav mr-5 text-white" data-toggle="modal" data-target="#exampleModalCenter2" style="cursor: pointer;">Pricing</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-nav mr-5 text-white"  data-toggle="modal" data-target="#exampleModalCenter" style="cursor: pointer;">Login/SignUp</a>
+                <a class="nav-link text-nav mr-5 text-white" href="#SignUp" data-toggle="modal" data-target="#exampleModalCenter">SignUp</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-nav mr-5 text-white" href="#SIgnIn" data-toggle="modal" data-target="#exampleModalCenter1">Sign In</a>
               </li>
             </ul>
           </div>

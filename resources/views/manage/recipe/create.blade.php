@@ -105,6 +105,36 @@
                       <label for="recipe-id-floating-icon">Description<span style="color:red;">*</span></label>
                     </div>
                   </div>
+                                    <div class="col-12">
+                    <div class="form-label-group position-relative has-icon-left">
+                      {{ Form::text('site_url',old('site_url'),array('class'=>'form-control', 'style'=> 'margin-bottom:10px;','placeholder'=>'Enter Site Url', 'data-validate-field' => 'site_url')) }}
+                      {!! $errors->first('site_url', '<p id="site_url-error" class="error" for="site_url" style="color: #B81111">:message</p>') !!}
+                      <div class="form-control-position">
+                        <i class="bx bx-mail-send"></i>
+                      </div>
+                      <label for="site_url-id-floating-icon">Site Url<span style="color:red;">*</span></label>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-label-group position-relative has-icon-left">
+                      {{ Form::text('address',old('address'),array('class'=>'form-control', 'style'=> 'margin-bottom:10px;','placeholder'=>'Enter Address' ,'data-validate-field' => 'address')) }}
+                      {!! $errors->first('address', '<p style="color: #B81111" id="address-error" class="error" for="address">:message</p>') !!}
+                      <div class="form-control-position">
+                        <i class="bx bx-mail-send"></i>
+                      </div>
+                      <label for="email-id-floating-icon">Address<span style="color:red;">*</span></label>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-label-group position-relative has-icon-left">
+                      {{ Form::text('price',old('price'),array('class'=>'form-control', 'style'=> 'margin-bottom:10px;','placeholder'=>'Enter Product Price' ,'data-validate-field' => 'price')) }}
+                      {!! $errors->first('price', '<p style="color: #B81111" id="price-error" class="error" for="price">:message</p>') !!}
+                      <div class="form-control-position">
+                        <i class="bx bx-mail-send"></i>
+                      </div>
+                      <label for="price-id-floating-icon">Price<span style="color:red;">*</span></label>
+                    </div>
+                  </div>
                   <div class="col-12 d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary mr-1 mb-1">{{(isset($recipe)) ? 'Update' : 'Save'}}</button>
                     <button type="reset" class="btn btn-light-secondary mr-1 mb-1">Reset</button>

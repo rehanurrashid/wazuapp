@@ -73,7 +73,9 @@ class RecipeController extends Controller
         $recipe->setAttribute('slug', $request->title);
         $recipe->ingredients = $request->ingredients;
         $recipe->recipe = $request->recipe;
-
+        $recipe->address = $request->address;
+        $recipe->price = $request->price;
+        $recipe->site_url = $request->site_url;
         $recipe->save();
 
         if($recipe){
@@ -138,7 +140,9 @@ class RecipeController extends Controller
         $recipe->title = $request->title;
         $recipe->ingredients = $request->ingredients;
         $recipe->recipe = $request->recipe;
-
+        $recipe->address = $request->address;
+        $recipe->price = $request->price;
+        $recipe->site_url = $request->site_url;
         $recipe->save();
 
         if($recipe){

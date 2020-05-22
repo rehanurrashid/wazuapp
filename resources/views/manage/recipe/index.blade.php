@@ -55,6 +55,9 @@
                             <th >Title</th>
                             <th>Ingredients</th>
                             <th>Recipe</th>
+                            <th>Address</th>
+                            <th>Price</th>
+                            <th>Website</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
@@ -99,6 +102,9 @@
                 { data: 'title', name: 'title' },
                 { data: 'ingredients', name: 'ingredients' },
                 { data: 'recipe', name: 'recipe' },
+                { data: 'address', name: 'address' },
+                { data: 'price', name: 'price' },
+                { data: 'site_url', name: 'site_url' },
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ],
             buttons: {

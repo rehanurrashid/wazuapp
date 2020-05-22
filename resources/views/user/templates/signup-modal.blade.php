@@ -1,5 +1,5 @@
 <!------- SIgnup Modal  -------->
-      <div class="modal bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header" style="background-color: #800000;">
@@ -72,6 +72,31 @@
                 
                 <button class="btn btn-default text-uppercase text-white mb-5 mt-5" type="submit">Sign up</button>
                 </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!------- SIgnIn Modal  -------->
+      <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header" style="background-color: #800000;">
+              <h5 class="modal-title text-white" id="exampleModalLongTitle" style="text-align: center;">Sign in</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body rounded-lg" style="background-color: #E8E8E8;">
+              <div class="container mt-5">
+                <form class="form-group mb-5">
+                  <center>
+                    <input type="text" name="Name" placeholder="Email"><br><br>
+                    <input type="Password" name="Password" placeholder="Password"><br><br>
+                  </center>
+                </form>
+                <button class="btn btn-default text-uppercase text-white mb-5">Sign in</button>
               </div>
             </div>
           </div>
