@@ -17,6 +17,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('slick/slick-theme.css') }}">
 
   <title>Home | Wazu</title>
+
+  <link rel="shortcut icon" type="image/x-icon" href="{{asset('images/favicon.png')}}">
+
 </head>
 
 <body class="p-0">

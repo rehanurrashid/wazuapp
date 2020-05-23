@@ -32,8 +32,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
-    <link rel="apple-touch-icon" href="{{asset('images/ico/apple-icon-120.png')}}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('images/ico/favicon.ico')}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('images/favicon.png')}}">s
 
     {{-- Include core + vendor Styles --}}
     @include('panels.styles')
