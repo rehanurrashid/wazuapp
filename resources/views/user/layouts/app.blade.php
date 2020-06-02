@@ -70,39 +70,106 @@
       window.$('#exampleModalCenter').modal('show'); 
     @endif
 
-    @if(Session::has('message'))
+    @if(Session::has('message') || Session::has('plan_failed') || Session::has('plan_already_activated'))
         window.$('#exampleModalCenter2').modal('show'); 
     @endif
 
-    $('.buy-now').click(function(){
-
-      var plan_id = $(this).parents('.card-2').find('p.plan-id').text();
-      var user_id = '{{ (!empty(Auth::user()->id)) ? Auth::user()->id : '' }}';
-      var host = "{{URL::to('/')}}";
-
-      $.ajax({
-           type: "POST",
-           url: host+'/activate-plan',
-           data: {"_token": "{{ csrf_token() }}",user_id:user_id, plan_id:plan_id},
-           success: function( response ) {
-
-              if(response.status == true){
-                window.location.replace('dashboard-ecommerce');
-              }
-              else if(response.status == false){
-                alert(response.message)
-              }
-
-           },
-           error: function(response){
-
-              if(response.status == false){
-                alert(response.message)
-              }
-           }
-      });
+    $('#exampleModal').on('hidden.bs.modal', function () {
+      $('#exampleModalCenter2').css('z-index','')
     })
 
+    $('.buy-now').click(function(){
+      @if(Auth::check())
+
+      $('#exampleModalCenter2').css('z-index',1000)
+      $('#exampleModal').css('z-index', 1050);
+
+
+      $(this).parents('.row').find('button.buy-now-selected').removeClass('buy-now-selected')
+      $(this).addClass('buy-now-selected')
+
+      $('#checkout-form').removeClass('d-none')
+      var plan_price = $(this).parents('.card-2').find('h3.plan-price').text();
+      var plan_id = $(this).parents('.card-2').find('p.plan-id').text();
+      $('#plan-price-form').val(plan_price)
+      $('#plan-id-form').val(plan_id)
+
+      @else
+        window.location.replace('admin/login');
+      @endif
+    })
+
+    // Create a Stripe client.
+var stripe = Stripe('pk_live_9S6yUbrolaJSfrXIfwd5nj8F');
+
+// Create an instance of Elements.
+var elements = stripe.elements();
+
+// Custom styling can be passed to options when creating an Element.
+// (Note that this demo uses a wider set of styles than the guide below.)
+var style = {
+  base: {
+    color: '#32325d',
+    fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+    fontSmoothing: 'antialiased',
+    fontSize: '16px',
+    '::placeholder': {
+      color: '#aab7c4'
+    }
+  },
+  invalid: {
+    color: '#fa755a',
+    iconColor: '#fa755a'
+  }
+};
+
+// Create an instance of the card Element.
+var card = elements.create('card', {style: style});
+
+// Add an instance of the card Element into the `card-element` <div>.
+card.mount('#card-element');
+
+// Handle real-time validation errors from the card Element.
+card.on('change', function(event) {
+  var displayError = document.getElementById('card-errors');
+  if (event.error) {
+    displayError.textContent = event.error.message;
+  } else {
+    displayError.textContent = '';
+  }
+});
+
+// Handle form submission.
+var form = document.getElementById('payment-form');
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  stripe.createToken(card).then(function(result) {
+    if (result.error) {
+      // Inform the user if there was an error.
+      var errorElement = document.getElementById('card-errors');
+      errorElement.textContent = result.error.message;
+    } else {
+      // Send the token to your server.
+      stripeTokenHandler(result.token);
+    }
+  });
+});
+
+// Submit the form with the token ID.
+function stripeTokenHandler(token) {
+  // Insert the token ID into the form so it gets submitted to the server
+  var form = document.getElementById('payment-form');
+  var hiddenInput = document.createElement('input');
+  hiddenInput.setAttribute('type', 'hidden');
+  hiddenInput.setAttribute('name', 'stripeToken');
+  hiddenInput.setAttribute('value', token.id);
+  form.appendChild(hiddenInput);
+
+  // Submit the form
+  form.submit();
+}
   })
+
 </script>
 

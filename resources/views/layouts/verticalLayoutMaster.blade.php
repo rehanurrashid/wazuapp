@@ -1,7 +1,7 @@
 <!-- BEGIN: Body-->
 <body class="vertical-layout vertical-menu-modern 2-columns 
 @if($configData['isMenuCollapsed'] == true){{'menu-collapsed'}}@endif 
-@if($configData['theme'] === 'dark'){{'dark-layout'}} @elseif($configData['theme'] === 'semi-dark'){{'semi-dark-layout'}} @else {{'light-layout'}} @endif
+@if($configData['theme'] === 'dark'){{'dark-layout'}} @eleif($configData['theme'] === 'semi-dark'){{'semi-dark-layout'}} @else {{'light-layout'}} @endif
 @if($configData['isContentSidebar'] === true) {{'content-left-sidebar'}} @endif @if(isset($configData['navbarType'])){{$configData['navbarType']}}@endif 
 @if(isset($configData['footerType'])) {{$configData['footerType']}} @endif 
 {{$configData['bodyCustomClass']}} 

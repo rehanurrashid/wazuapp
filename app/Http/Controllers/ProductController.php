@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
-use App\Http\Requests\Storeproduct;
+use App\Http\Requests\StoreProduct;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\ProductRating;
@@ -101,7 +101,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Storeproduct $request)
+    public function store(StoreProduct $request)
     {
         $product = new product;
 

@@ -20,6 +20,7 @@
         "laravelcollective/html": "^6.1",
         "santigarcor/laratrust": "^6.0",
         "spatie/laravel-permission": "^3.6",
+        "stripe/stripe-php": "^7.36",
         "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {

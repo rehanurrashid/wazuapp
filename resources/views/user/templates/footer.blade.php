@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-md-4  mb-4">
                 <img src="images/logo.png" class="img-fluid" width="90">
-                <p class="mt-3 text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt nisi quae quisquam rerum tempora consequuntur et vel quod, libero molestias est nobis necessitatibus optio obcaecati aperiam eos tempore quas sit..
+                <p class="mt-3 text-white">We are looking forward to helping you delight customers generate more sales and increase your customer lifetime value.
                 </p>
             </div>
             <div class=" col-md-3 offset-md-2 mt-3 mb-4">

@@ -32,7 +32,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('images/favicon.png')}}">s
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('images/favicon.png')}}">
 
     {{-- Include core + vendor Styles --}}
     @include('panels.styles')

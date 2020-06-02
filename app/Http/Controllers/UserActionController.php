@@ -89,39 +89,57 @@ class UserActionController extends Controller
         $plan = Plan::find($request->plan_id);
 
         // check user and plan activated or not
-        $user_plan = UserPlan::where('user_id','=',$request->user_id)
+        $user_plan = UserPlan::where('user_id','=',auth()->user()->id)
                                 ->where('plan_id','=',$request->plan_id)
                                 ->first();
         
         if(empty($user_plan)){
 
             // check user activated some other plan
-            $user_plan = UserPlan::where('user_id','=', $request->user_id)->first();
+            $user_plan = UserPlan::where('user_id','=', auth()->user()->id)->first();
 
             if(!empty($user_plan)){
-                $user_plan->user_id = $request->user_id;
+                $user_plan->user_id = auth()->user()->id;
                 $user_plan->plan_id = $request->plan_id;
                 $user_plan->save();
             }
             else{
                 $user_plan = new UserPlan;
-                $user_plan->user_id = $request->user_id;
+                $user_plan->user_id = auth()->user()->id;
                 $user_plan->plan_id = $request->plan_id;
                 $user_plan->save();
 
             }
             if($user_plan){
-                   Session::flash('plan', 'You have activated '.$plan->name.' package successfully!');
-                    Session::flash('alert-class', 'alert-success');
 
-                    return response(['status' => true, 'message' => 'Package activated successfully!'], 200); 
-                }
-                else{
-                    return response(['status' => false, 'message' => 'Package failed to activate!']); 
-                }
+                $stripe = new \Stripe\StripeClient(
+                  'sk_live_Z7w8hEmu6CMlKNMG3QlyWXO6'
+                );
+                $stripe->charges->create([
+                  'amount' => $request->price,
+                  'currency' => 'usd',
+                  'source' => $request->stripeToken,
+                  'description' => 'My First Test Charge (created for API docs)',
+                ]);
+
+                Session::flash('plan', 'You have activated '.$plan->name.' package successfully!');
+                Session::flash('alert-class', 'alert-success');
+
+                return view('pages.dashboard-ecommerce');
+
+            }
+            else{
+                Session::flash('plan_failed', 'Package failed to activate!');
+                Session::flash('alert-class', 'alert-danger');
+
+                return redirect()->back(); 
+            }
         }
         else{
-            return response(['status' => false, 'message' => 'Package already activated!']);
+            Session::flash('plan_already_activated', 'Package already activated!');
+            Session::flash('alert-class', 'alert-warning');
+                
+            return redirect()->back(); 
         }
     }
 }

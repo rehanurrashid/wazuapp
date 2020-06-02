@@ -22,12 +22,18 @@
               <li class="nav-item">
                 <a class="nav-link text-nav mr-5 text-white" data-toggle="modal" data-target="#exampleModalCenter2" style="cursor: pointer;">Pricing</a>
               </li>
+              @if(Auth::check())
+              <li class="nav-item">
+                <a class="nav-link text-nav mr-5 text-white" href="{{url('dashboard-ecommerce')}}" >My Account</a>
+              </li>
+              @else
               <li class="nav-item">
                 <a class="nav-link text-nav mr-5 text-white" href="#SignUp" data-toggle="modal" data-target="#exampleModalCenter">SignUp</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link text-nav mr-5 text-white" href="#SIgnIn" data-toggle="modal" data-target="#exampleModalCenter1">Sign In</a>
               </li>
+              @endif
             </ul>
           </div>
         </nav>

@@ -17,9 +17,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('slick/slick-theme.css') }}">
 
   <title>Home | Wazu</title>
-
   <link rel="shortcut icon" type="image/x-icon" href="{{asset('images/favicon.png')}}">
-
 </head>
 
 <body class="p-0">
@@ -65,9 +63,9 @@
           <h3 class="text-capitalize text-left mb-5">Features <span class="font-weight-bold">we offer</span></h3>
           <h6 class="text-capitalize"><span><img class="p-2" src="images/bullet.png">subscriptions for products</span>
           </h6>
-          <p class="text-muted">Lorem Ipsum is simply dummy text of the printing <br>and typesetting industry. Lorem
-            Ipsum has been the <br>industry's standard dummy text ever since the 1500s,<br> when an unknown printer took
-            a galley of type and <br>scrambled it to make a type specimen book</p>
+          <p class="text-muted w-75">First impressions mean everything with the customers discovering your product.<br>
+          Extend your customer lifetime value by introducing the product to your customers as if you were there engaging with them in person. Working with WAZU allows your customers to spend more time focusing on your products, allowing them to remember details and your brand values. <br>
+          Delight your customers by adding your products to our database by signing up to one of our subscriptions.</p>
         </div>
         <div class="col-md-6">
           <img class="w-100" src="images/Group 61.png">
@@ -79,9 +77,9 @@
   <section class="how-we-work" id="Technology">
     <div class="container">
       <h3 class="text-white text-center text-capitalize p-5">how <span class="font-weight-bold">we work</span></h3>
-      <p class="text-white text-center">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-        Ipsum has been the industry's standard</p>
-      <p class="text-white text-center">Lorem Ipsum is simply dummy text. Lorem Ipsum has been the industry's standard
+      <p class="text-white text-center">With WAZU customers take pictures (no QR codes , no barcodes) and find details about the products that they’re interested in.
+      <br>
+      WAZU allows you to create custom experiences for your customers. <br> You can run promotions, educate customers or send them directly to your personal website in seconds. <br> Easily discover where you need retail distribution by learning the location of the customers are looking for your products.
       </p>
       <div class="row justify-content-center">
         <div class="col-md-3">
@@ -115,11 +113,9 @@
   <div class="empty-2"></div>
   <section class="powerful-features" id="features">
     <h3 class="text-center text-capitalize">powerful <span class="font-weight-bold">features</span></h3>
-    <p class="text-center text-muted mb-5">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+    <p class="text-center text-muted mb-5">lorem ipsum has been the industry's standard dummy text ever
     </p>
-    <p class="text-center text-muted mb-5">Lorem Ipsum is simply dummy text of the printing and typesetting
-      industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.<br>Lorem Ipsum is simply dummy
-      text of the printing and typesetting industry.Lorem </p>
+    <p class="text-center text-muted mb-5">Sign up now button ( link to subscriptions ) </p>
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-4">
@@ -128,8 +124,7 @@
             <div class="col-md-10">
               <div class="pr-1">
                 <h5 class="text-capitalize">product scanning</h5>
-                <p class="mb-5 text-muted">lorem ipsum is a dummy text <br>lorem ipsum is a dummy text lorem ipsum
-                  <br>is a dummy text lorem ipsum <br>is a dummy text lorem ipsum is a dummy</p>
+                <p class="mb-5 text-muted">Customers take pictures of products <br> in WAZU recognizes your product using <br> artificial intelligence in seconds. <br> There is no need for <br> you to change your <br> packaging and add <br> a QR code or a barcode.</p>
               </div>
             </div>
             <div class="col-md-2">
@@ -141,8 +136,7 @@
             <div class="col-md-10">
               <div class="pr-1">
                 <h5 class="text-capitalize">retrieve results</h5>
-                <p class=" mb-5 text-muted">lorem ipsum is a dummy text <br>lorem ipsum is a dummy text lorem ipsum
-                  <br>is a dummy text lorem ipsum <br>is a dummy text lorem ipsum is a dummy</p>
+                <p class=" mb-5 text-muted">WAZU shifts through <br> millions of inventory <br> to find your <br>product quickly</p>
               </div>
             </div>
             <div class="col-md-2">
@@ -162,8 +156,8 @@
             <div class="col-md-10 pl-4">
               <div class="pr-2">
                 <h5 class="text-capitalize">shop online</h5>
-                <p class=" mb-5 text-muted">lorem ipsum is a dummy text <br>lorem ipsum is a dummy text lorem ipsum
-                  <br>is a dummy text lorem ipsum <br>is a dummy text lorem ipsum is a dummy</p>
+                <p class=" mb-5 text-muted">Two clicks is all it <br> takes for customers to reach a destination <br> of your choice. <br>
+          We can forward customers  <br>to your personal shopping  <br>website or social media.</p>
               </div>
             </div>
           </div>
@@ -175,8 +169,7 @@
             <div class="col-md-10 pl-4">
               <div class="pr-2">
                 <h5 class="text-capitalize">image processing</h5>
-                <p class=" mb-5 text-muted">lorem ipsum is a dummy text <br>lorem ipsum is a dummy text lorem ipsum
-                  <br>is a dummy text lorem ipsum <br>is a dummy text lorem ipsum is a dummy</p>
+                <p class=" mb-5 text-muted">If you need more reviews <br> WAZU can facilitate <br> product sampling to authentic <br>customers who love to <br> try your brand.</p>
               </div>
             </div>
           </div>
@@ -187,7 +180,7 @@
   <div class="empty-2"></div>
   <section class="explore-our-app">
     <h3 class="text-capitalize text-center mb-4">explore <span class="font-weight-bold">our app</span></h3>
-    <p class="text-center text-muted">lorem ipsum has been the industry's standard dummy text ever</p>
+    <p class="text-center text-muted">If you need more reviews WAZU can facilitate product sampling to authentic customers who love to try your brand.</p>
     <div class="container">
       <div class="center slider pt-4 pb-5 ">
         <div>
@@ -387,40 +380,107 @@
       window.$('#exampleModalCenter').modal('show'); 
     @endif
 
-    @if(Session::has('message'))
+    @if(Session::has('message') || Session::has('plan_failed') || Session::has('plan_already_activated'))
         window.$('#exampleModalCenter2').modal('show'); 
     @endif
 
-    $('.buy-now').click(function(){
-
-      var plan_id = $(this).parents('.card-2').find('p.plan-id').text();
-      var user_id = '{{ (!empty(Auth::user()->id)) ? Auth::user()->id : '' }}';
-      var host = "{{URL::to('/')}}";
-
-      $.ajax({
-           type: "POST",
-           url: host+'/activate-plan',
-           data: {"_token": "{{ csrf_token() }}",user_id:user_id, plan_id:plan_id},
-           success: function( response ) {
-
-              if(response.status == true){
-                window.location.replace('admin/dashboard');
-              }
-              else if(response.status == false){
-                alert(response.message)
-              }
-
-           },
-           error: function(response){
-
-              if(response.status == false){
-                alert(response.message)
-              }
-           }
-      });
+    $('#exampleModal').on('hidden.bs.modal', function () {
+      $('#exampleModalCenter2').css('z-index','')
     })
 
+    $('.buy-now').click(function(){
+      @if(Auth::check())
+
+      $('#exampleModalCenter2').css('z-index',1000)
+      $('#exampleModal').css('z-index', 1050);
+
+
+      $(this).parents('.row').find('button.buy-now-selected').removeClass('buy-now-selected')
+      $(this).addClass('buy-now-selected')
+
+      $('#checkout-form').removeClass('d-none')
+      var plan_price = $(this).parents('.card-2').find('h3.plan-price').text();
+      var plan_id = $(this).parents('.card-2').find('p.plan-id').text();
+      $('#plan-price-form').val(plan_price)
+      $('#plan-id-form').val(plan_id)
+
+      @else
+        window.location.replace('admin/login');
+      @endif
+    })
+
+    // Create a Stripe client.
+var stripe = Stripe('pk_live_9S6yUbrolaJSfrXIfwd5nj8F');
+
+// Create an instance of Elements.
+var elements = stripe.elements();
+
+// Custom styling can be passed to options when creating an Element.
+// (Note that this demo uses a wider set of styles than the guide below.)
+var style = {
+  base: {
+    color: '#32325d',
+    fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+    fontSmoothing: 'antialiased',
+    fontSize: '16px',
+    '::placeholder': {
+      color: '#aab7c4'
+    }
+  },
+  invalid: {
+    color: '#fa755a',
+    iconColor: '#fa755a'
+  }
+};
+
+// Create an instance of the card Element.
+var card = elements.create('card', {style: style});
+
+// Add an instance of the card Element into the `card-element` <div>.
+card.mount('#card-element');
+
+// Handle real-time validation errors from the card Element.
+card.on('change', function(event) {
+  var displayError = document.getElementById('card-errors');
+  if (event.error) {
+    displayError.textContent = event.error.message;
+  } else {
+    displayError.textContent = '';
+  }
+});
+
+// Handle form submission.
+var form = document.getElementById('payment-form');
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  stripe.createToken(card).then(function(result) {
+    if (result.error) {
+      // Inform the user if there was an error.
+      var errorElement = document.getElementById('card-errors');
+      errorElement.textContent = result.error.message;
+    } else {
+      // Send the token to your server.
+      stripeTokenHandler(result.token);
+    }
+  });
+});
+
+// Submit the form with the token ID.
+function stripeTokenHandler(token) {
+  // Insert the token ID into the form so it gets submitted to the server
+  var form = document.getElementById('payment-form');
+  var hiddenInput = document.createElement('input');
+  hiddenInput.setAttribute('type', 'hidden');
+  hiddenInput.setAttribute('name', 'stripeToken');
+  hiddenInput.setAttribute('value', token.id);
+  form.appendChild(hiddenInput);
+
+  // Submit the form
+  form.submit();
+}
   })
+
 </script>
 
 </body>
