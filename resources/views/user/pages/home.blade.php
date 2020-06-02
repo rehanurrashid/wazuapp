@@ -47,7 +47,7 @@
             </div>
             </div>
             <div class="col-md-5">
-              <img class="img-fluid mt-5 mt-md-0" src="images/banner.png" width="400">
+              <img class="img-fluid mt-5 mt-md-0" src="{{asset('images/banner.png')}}" width="400">
             </div>
           </div>
         </div>
@@ -61,14 +61,14 @@
       <div class="row chooos-div">
         <div class="col-md-6">
           <h3 class="text-capitalize text-left mb-5">Features <span class="font-weight-bold">we offer</span></h3>
-          <h6 class="text-capitalize"><span><img class="p-2" src="images/bullet.png">subscriptions for products</span>
+          <h6 class="text-capitalize"><span><img class="p-2" src="{{asset('images/bullet.png')}}">subscriptions for products</span>
           </h6>
           <p class="text-muted w-75">First impressions mean everything with the customers discovering your product.<br>
           Extend your customer lifetime value by introducing the product to your customers as if you were there engaging with them in person. Working with WAZU allows your customers to spend more time focusing on your products, allowing them to remember details and your brand values. <br>
           Delight your customers by adding your products to our database by signing up to one of our subscriptions.</p>
         </div>
         <div class="col-md-6">
-          <img class="w-100" src="images/Group 61.png">
+          <img class="w-100" src="{{asset('images/Group 61.png')}}">
         </div>
         <div class="empty-2"></div>
       </div>
@@ -84,12 +84,12 @@
       <div class="row justify-content-center">
         <div class="col-md-3">
           <div class="white-back text-center p-3">
-            <img src="images/Ai.png"> <span class="ml-3">Artificial inteligence</span>
+            <img src="{{asset('images/Ai.png')}}"> <span class="ml-3">Artificial inteligence</span>
           </div>
         </div>
         <div class="col-md-3 mt-4 mt-md-0">
           <div class="white-back text-center p-3 ml-3">
-            <img src="images/image processing.png" class="mt-1"><span class="ml-3">Image Processing</span>
+            <img src="{{asset('images/image processing.png')}}" class="mt-1"><span class="ml-3">Image Processing</span>
           </div>
         </div>
         
@@ -98,11 +98,11 @@
       <div class="work-div shadow">
         <div class="container">
           <div class="row justify-content-center">
-            <img src="images/step 1.png" style=" margin-top: 1rem; width: auto;">
-            <img src="images/loading.png" style="width: 15%; height: 12px; margin-top: 6rem; margin-left: 2rem;">
-            <img src="images/step 2.png" style="margin-left: 2rem; margin-top: 1.5rem; width: auto;">
-            <img src="images/loading.png" style="width: 15%; height: 12px; margin-top: 6rem; margin-left: 2rem;">
-            <img src="images/step 3.png" style="margin-left: 2rem; margin-top: 1.5rem; width: auto;">
+            <img src="{{asset('images/step 1.png')}}" style=" margin-top: 1rem; width: auto;">
+            <img src="{{asset('images/loading.png')}}" style="width: 15%; height: 12px; margin-top: 6rem; margin-left: 2rem;">
+            <img src="{{asset('images/step 2.png')}}" style="margin-left: 2rem; margin-top: 1.5rem; width: auto;">
+            <img src="{{asset('images/loading.png')}}" style="width: 15%; height: 12px; margin-top: 6rem; margin-left: 2rem;">
+            <img src="{{asset('images/step 3.png')}}" style="margin-left: 2rem; margin-top: 1.5rem; width: auto;">
           </div>
         </div>
       </div>
@@ -113,50 +113,48 @@
   <div class="empty-2"></div>
   <section class="powerful-features" id="features">
     <h3 class="text-center text-capitalize">powerful <span class="font-weight-bold">features</span></h3>
-    <p class="text-center text-muted mb-5">lorem ipsum has been the industry's standard dummy text ever
-    </p>
-    <p class="text-center text-muted mb-5">Sign up now button ( link to subscriptions ) </p>
+    <button class="btn btn-default text-uppercase text-white mb-5 mt-5" href="#SignUp" data-toggle="modal" data-target="#exampleModalCenter">SignUp Now</button>
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-4">
           <div class="row">
             <div class="empty-2"></div>
-            <div class="col-md-10">
-              <div class="pr-1">
+            <div class="col-md-7 offset-3">
+              <div class="">
                 <h5 class="text-capitalize">product scanning</h5>
-                <p class="mb-5 text-muted">Customers take pictures of products <br> in WAZU recognizes your product using <br> artificial intelligence in seconds. <br> There is no need for <br> you to change your <br> packaging and add <br> a QR code or a barcode.</p>
+                <p class="mb-5 text-muted">Customers take pictures of products in WAZU recognizes your product using  artificial intelligence in seconds. <br> There is no need for  you to change your packaging and add a QR code or a barcode.</p>
               </div>
             </div>
-            <div class="col-md-2">
-              <img class="img-pr" src="images/scaning.png">
+            <div class="col-md-2 p-0">
+              <img class="img-pr" src="{{asset('images/scaning.png')}}">
             </div>
           </div>
           <div class="empty-2"></div>
           <div class="row">
-            <div class="col-md-10">
-              <div class="pr-1">
+            <div class="col-md-7 offset-3">
+              <div class="">
                 <h5 class="text-capitalize">retrieve results</h5>
-                <p class=" mb-5 text-muted">WAZU shifts through <br> millions of inventory <br> to find your <br>product quickly</p>
+                <p class=" mb-5 text-muted">WAZU shifts through millions<br> of  inventory to find your <br>product quickly</p>
               </div>
             </div>
-            <div class="col-md-2">
-              <img class="img-pr" src="images/results.png">
+            <div class="col-md-2 p-0">
+              <img class="img-pr" src="{{asset('images/results.png')}}">
             </div>
           </div>
         </div>
         <div class="col-md-4">
-          <img src="images/phone 1.png" style="display: block; margin: auto; width: 75%; margin-top: 2rem;">
+          <img src="{{asset('images/phone 1.png')}}" style="display: block; margin: auto; width: 75%; margin-top: 2rem;">
         </div>
         <div class="col-md-4">
           <div class="empty-2"></div>
           <div class="row">
             <div class="col-md-2">
-              <img class="img-pr" src="images/shop.png">
+              <img class="img-pr" src="{{asset('images/shop.png')}}">
             </div>
-            <div class="col-md-10 pl-4">
+            <div class="col-md-7 offset-1">
               <div class="pr-2">
                 <h5 class="text-capitalize">shop online</h5>
-                <p class=" mb-5 text-muted">Two clicks is all it <br> takes for customers to reach a destination <br> of your choice. <br>
+                <p class=" mb-5 text-muted">Two clicks is all it takes for customers to reach a destination of your choice. <br>
           We can forward customers  <br>to your personal shopping  <br>website or social media.</p>
               </div>
             </div>
@@ -164,12 +162,12 @@
           <div class="empty-2"></div>
           <div class="row">
             <div class="col-md-2">
-              <img class="img-pr" src="images/process.png">
+              <img class="img-pr" src="{{asset('images/process.png')}}">
             </div>
-            <div class="col-md-10 pl-4">
+            <div class="col-md-7 offset-1">
               <div class="pr-2">
                 <h5 class="text-capitalize">image processing</h5>
-                <p class=" mb-5 text-muted">If you need more reviews <br> WAZU can facilitate <br> product sampling to authentic <br>customers who love to <br> try your brand.</p>
+                <p class=" mb-5 text-muted">If you need more reviews WAZU can facilitate product sampling to authentic customers who love to try your brand.</p>
               </div>
             </div>
           </div>
@@ -184,28 +182,28 @@
     <div class="container">
       <div class="center slider pt-4 pb-5 ">
         <div>
-          <img src="images/screen 1.png">
+          <img src="{{asset('images/screen 1.png')}}">
         </div>
         <div>
-          <img src="images/screen 2.png">
+          <img src="{{asset('images/screen 2.png')}}">
         </div>
         <div>
-          <img src="images/screen 3.png">
+          <img src="{{asset('images/screen 3.png')}}">
         </div>
         <div>
-          <img src="images/screen 4.png">
+          <img src="{{asset('images/screen 4.png')}}">
         </div>
         <div>
-          <img src="images/screen 3.png">
+          <img src="{{asset('images/screen 3.png')}}">
         </div>
         <div>
-          <img src="images/screen 1.png">
+          <img src="{{asset('images/screen 1.png')}}">
         </div>
         <div>
-          <img src="images/screen 2.png">
+          <img src="{{asset('images/screen 2.png')}}">
         </div>
         <div>
-          <img src="images/screen 3.png">
+          <img src="{{asset('images/screen 3.png')}}">
         </div>
       </div>
     </div>
@@ -235,7 +233,7 @@
         <div class="col-md-6 p-0 m-0">
           <div class="empty-2"></div>
           <div class="choose-image-div">
-            <img src="images/why us.png">
+            <img src="{{asset('images/why us.png')}}">
           </div>
         </div>
       </div>
