@@ -85,50 +85,77 @@ class UserActionController extends Controller
     }
 
     public function activate_plan(Request $request){
+                
+        $user = User::find(auth()->user()->id);
 
         $plan = Plan::find($request->plan_id);
 
+        if($request->plan_id == 1){
+            $price = 'price_1Gpk1mH6P42cJSQQ6DLFRGmP';
+        }
+        else if($request->plan_id == 2){
+            $price = 'price_1GpzSKH6P42cJSQQ4ZdZbNq0';
+        }
+        else if($request->plan_id == 3){
+            $price = 'price_1GpzSqH6P42cJSQQSFwgztxn';
+        }
         // check user and plan activated or not
         $user_plan = UserPlan::where('user_id','=',auth()->user()->id)
                                 ->where('plan_id','=',$request->plan_id)
                                 ->first();
         
+
         if(empty($user_plan)){
 
             // check user activated some other plan
             $user_plan = UserPlan::where('user_id','=', auth()->user()->id)->first();
 
-            if(!empty($user_plan)){
+            // sk_test_pR71jcrtrBY7uFuzWJLCoQ6Z00rl5rX8br   test key 
+            
+            $already_activated_plan = Plan::find($user_plan->plan_id);
+
+                \Stripe\Stripe::setApiKey('sk_live_Z7w8hEmu6CMlKNMG3QlyWXO6');
+
+               $customer = \Stripe\Customer::create([
+                  'email' => $user->email,
+                  'source'  => $request->stripeToken,
+                ]);
+
+                $subscription = \Stripe\Subscription::create([
+                  'customer' => $customer->id,
+                  'items' => [
+                    [
+                      'price' => $price,
+                    ],
+                  ],
+                  'expand' => ['latest_invoice.payment_intent'],
+                ]);
+
+            if(!empty($user_plan) && !empty($subscription)){
+
                 $user_plan->user_id = auth()->user()->id;
                 $user_plan->plan_id = $request->plan_id;
                 $user_plan->save();
+
+                Session::flash('updated', 'You have changed your package from '. $already_activated_plan->name. ' to '. $plan->name);
             }
-            else{
+            else if(empty($user_plan) && !empty($subscription)){
                 $user_plan = new UserPlan;
                 $user_plan->user_id = auth()->user()->id;
                 $user_plan->plan_id = $request->plan_id;
                 $user_plan->save();
 
             }
+
             if($user_plan){
 
-                $stripe = new \Stripe\StripeClient(
-                  'sk_live_Z7w8hEmu6CMlKNMG3QlyWXO6'
-                );
-                $stripe->charges->create([
-                  'amount' => $request->price,
-                  'currency' => 'usd',
-                  'source' => $request->stripeToken,
-                  'description' => 'My First Test Charge (created for API docs)',
-                ]);
-
-                Session::flash('plan', 'You have activated '.$plan->name.' package successfully!');
-                Session::flash('alert-class', 'alert-success');
+                Session::flash('message', 'You have activated '.$plan->name.' package successfully!');
 
                 return view('pages.dashboard-ecommerce');
 
             }
             else{
+
                 Session::flash('plan_failed', 'Package failed to activate!');
                 Session::flash('alert-class', 'alert-danger');
 
@@ -136,6 +163,7 @@ class UserActionController extends Controller
             }
         }
         else{
+
             Session::flash('plan_already_activated', 'Package already activated!');
             Session::flash('alert-class', 'alert-warning');
                 

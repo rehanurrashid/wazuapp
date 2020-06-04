@@ -380,6 +380,7 @@
 
     @if(Session::has('message') || Session::has('plan_failed') || Session::has('plan_already_activated'))
         window.$('#exampleModalCenter2').modal('show'); 
+        window.$('#exampleModalCenter2').addClass('show')
     @endif
 
     $('#exampleModal').on('hidden.bs.modal', function () {
@@ -407,7 +408,8 @@
       @endif
     })
 
-    // Create a Stripe client.
+    // pk_test_w1bPPgyQs8vPVM59Bc2FK03A00mJZV31dU test key
+    // Create a Stripe client.       pk_live_9S6yUbrolaJSfrXIfwd5nj8F
 var stripe = Stripe('pk_live_9S6yUbrolaJSfrXIfwd5nj8F');
 
 // Create an instance of Elements.

@@ -1,4 +1,4 @@
-@extends('layouts.contentLayoutMaster')
+extends('layouts.contentLayoutMaster')
 {{-- title --}}
 @section('title','Tabs')
 

@@ -11,13 +11,31 @@
 @endsection
 
 @section('content')
+
+<section id="default-breadcrumb">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Dashboard</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Dashboard Ecommerce Starts -->
 <section id="dashboard-ecommerce">
       <div class="row">
         <div class="col-lg-12">
             <div>
                 @if(Session::has('message'))
-                    <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+                    <p class="alert {{ Session::get('alert-class', 'alert-success') }}">{{ Session::get('message') }}</p>
+                @endif
+            </div>
+            <div>
+                @if(Session::has('updated'))
+                    <p class="alert {{ Session::get('alert-class', 'alert-primary') }}">{{ Session::get('updated') }}</p>
                 @endif
             </div>
         </div>

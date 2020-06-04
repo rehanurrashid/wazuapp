@@ -207,7 +207,7 @@ Route::get('password/reset/{token}', [
 
 Route::get('/', 'HomeController@home')->name('home');
 Route::post('/register', 'UserActionController@register')->name('register');
-Route::middleware('auth')->post('/activate-plan', 'UserActionController@activate_plan')->name('activate-plan');
+Route::post('/activate-plan', 'UserActionController@activate_plan')->name('activate-plan');
 Route::get('privacy-policy', 'HomeController@privacy_policy')->name('privacy-policy');
 Route::get('terms-conditions', 'HomeController@terms_conditions')->name('terms-conditions');
 Route::get('contact-us', 'HomeController@contact_us')->name('contact-us');

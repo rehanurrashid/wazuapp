@@ -11,11 +11,6 @@
             <div class="modal-body rounded-lg" style="background-color: #E8E8E8;">
               <div class="container">
                 <div>
-                    @if(Session::has('message'))
-                        <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{Session::get('message') }}</p>
-                    @endif
-                </div>
-                <div>
                     @if(Session::has('check'))
                         <p class="alert alert-warning">{{Session::get('check') }}</p>
                     @endif
@@ -82,6 +77,7 @@
         <div >
           <script src="https://js.stripe.com/v3/"></script>
             <form action="{{route('activate-plan')}}" method="post" id="payment-form" class="text-center">
+              @csrf
               <input type="hidden" name="price" id="plan-price-form">
               <input type="hidden" name="plan_id" id="plan-id-form">
               <div class="form-row">
