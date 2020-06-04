@@ -1,29 +1,17 @@
 {
   "menu": [
     {
-      "url": "#",
+      "url": "/dashboard-ecommerce",
       "name": "Dashboard",
       "i18n": "Dashboard",
       "icon": "desktop",
-      "tag": "1",
-      "tagcustom": "badge badge-light-danger badge-pill badge-round float-right mr-2",
+      "tagcustom": "",
       "submenu": [
-        {
-          "url": "/dashboard-ecommerce",
-          "name": "eCommerce",
-          "i18n": "eCommerce",
-          "icon": "bx bx-right-arrow-alt"
-        }
+       
       ]
     },
         {
       "navheader": "Manage"
-    },
-    {
-      "url": "page-user-profile",
-      "name": "User Profile",
-      "i18n": "User Profile",
-      "icon": "user"
     },
     {
       "url": "manage_vendors",

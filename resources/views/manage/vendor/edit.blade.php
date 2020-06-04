@@ -28,7 +28,7 @@
                     <div class="form-label-group position-relative has-icon-left">
                       <div class="text-center">
 		                  <label for="file-input2" style="cursor: pointer;">
-		                    <img class="round rounded-circle" width="120" height="120" src="{{ !empty($vendor->profile->photo) ? $vendor->profile->photo : asset('images/Group 71.png')}}">
+		                    <img class="round rounded-circle" width="120" height="120" src="{{ !empty($vendor->profile->photo) ? $vendor->profile->photo : asset('images/Group 71.png')}}"  id="output">
 		                  </label>
 		                  <p class="text-center text-muted text-capitalize">upload image</p><br>
 		                    {!! $errors->first('photo', '<p style="color: #B81111" id="photo-error" class="error" for="photo" style="color: #B81111">:message</p>') !!}
@@ -39,7 +39,7 @@
 		                        Maximum File Size Limit is 5MB.
 		                      </p>
 		                </div>
-		                <input type="file" name="photo" id="file-input2" class="d-none" data-validate-field="photo" value="{{old('photo')}}">
+		                <input type="file" name="photo" id="file-input2" class="d-none" data-validate-field="photo" value="{{old('photo')}}" onchange="loadFile(event)">
                     </div>
                   </div>
                   <div class="col-12">
@@ -67,7 +67,8 @@
 
                   <div class="col-12">
                     <div class="form-label-group position-relative has-icon-left">
-                      {{ Form::text('address',old('address'),array('class'=>'form-control', 'style'=> 'margin-bottom:10px;','placeholder'=>'Enter Address' ,'data-validate-field' => 'address')) }}
+                      
+                      <input type="text" name="address" class="form-control" data-validate-field="address" placeholder="Enter Address" value="{{$vendor->profile->address}}">
                       {!! $errors->first('address', '<p style="color: #B81111" id="address-error" class="error" for="address">:message</p>') !!}
                       <div class="form-control-position">
                         <i class="bx bx-mail-send"></i>
@@ -77,7 +78,7 @@
                   </div>
                   <div class="col-12">
                     <div class="form-label-group position-relative has-icon-left">
-                      {{ Form::text('city',old('city'),array('class'=>'form-control', 'style'=> 'margin-bottom:10px;','placeholder'=>'Enter City Name' ,'data-validate-field' => 'city')) }}
+                      <input type="text" name="city" class="form-control" data-validate-field="city" placeholder="Enter Address" value="{{$vendor->profile->city}}">
                       {!! $errors->first('city', '<p style="color: #B81111" id="city-error" class="error" for="city">:message</p>') !!}
                       <div class="form-control-position">
                         <i class="bx bx-mail-send"></i>
@@ -87,7 +88,7 @@
                   </div>
                   <div class="col-12">
                     <div class="form-label-group position-relative has-icon-left">
-                      {{ Form::text('country',old('country'),array('class'=>'form-control', 'style'=> 'margin-bottom:10px;','placeholder'=>'Enter Country Name' ,'data-validate-field' => 'country')) }}
+                      <input type="text" name="country" class="form-control" data-validate-field="country" placeholder="Enter Address" value="{{$vendor->profile->country}}">
                       {!! $errors->first('country', '<p style="color: #B81111" id="country-error" class="error" for="country">:message</p>') !!}
                       <div class="form-control-position">
                         <i class="bx bx-mail-send"></i>
@@ -97,7 +98,7 @@
                   </div>
                   <div class="col-12">
                     <div class="form-label-group position-relative has-icon-left">
-                      {{ Form::number('phone',old('phone'),array('class'=>'form-control', 'style'=> 'margin-bottom:10px;','placeholder'=>'Enter Phone Number' ,'data-validate-field' => 'phone')) }}
+                      <input type="text" name="phone" class="form-control" data-validate-field="phone" placeholder="Enter Address" value="{{$vendor->profile->phone}}">
                       {!! $errors->first('phone', '<p style="color: #B81111" id="phone-error" class="error" for="phone">:message</p>') !!}
                       <div class="form-control-position">
                         <i class="bx bx-mobile"></i>
@@ -181,5 +182,14 @@
             },
         },
     });
+
+  var loadFile = function(event) {
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
+    }
+    $('#output').attr('width','50%');
+  };
 </script>
 @endsection

@@ -6,9 +6,9 @@
       <li class="nav-item mr-auto">
           <a class="navbar-brand" href="{{asset('/dashboard-ecommerce')}}">
           <div class="brand-logo">
-            <img src="{{asset('images/logo/logo.png')}}" class="logo" alt="">
+            <img src="{{asset('images/logo.png')}}" class="logo" alt="">
           </div>
-          <h2 class="brand-text mb-0">
+          <h2 class="brand-text mb-0" style="color: #701D1D">
 
             {{-- @if(!empty($configData['templateTitle']) && isset($configData['templateTitle']))
               {{$configData['templateTitle']}}
@@ -24,7 +24,7 @@
           <li class="nav-item nav-toggle">
           <a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse">
             <i class="bx bx-x d-block d-xl-none font-medium-4 primary"></i>
-            <i class="toggle-icon bx bx-disc font-medium-4 d-none d-xl-block primary" data-ticon="bx-disc"></i>
+            <i class="toggle-icon bx bx-disc font-medium-4 d-none d-xl-block" data-ticon="bx-disc" style="color: #701D1D !important"></i>
           </a>
           </li>
       </ul>
@@ -49,9 +49,7 @@
                   <span class="{{$menu->tagcustom}}">{{$menu->tag}}</span>
                   @endif
               </a>
-              @if(isset($menu->submenu))
-                  @include('panels.sidebar-submenu',['menu' => $menu->submenu])
-              @endif
+
               </li>
               @endif
           @endforeach

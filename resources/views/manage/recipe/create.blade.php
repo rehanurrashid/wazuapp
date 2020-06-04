@@ -43,7 +43,7 @@
                     <div class="form-label-group position-relative has-icon-left">
                       <div class="">
 		                  <label for="file-input2" style="cursor: pointer;">
-		                    <img class="modal-img" src="{{asset('images/Group 71.png')}}" >
+		                    <img class="modal-img rounded-circle" src="{{asset('images/Group 71.png')}}" id="output" >
 		                  </label>
 		                  <p class="text-center text-muted text-capitalize">upload image</p><br>
 		                    {!! $errors->first('photo', '<p style="color: #B81111" id="photo-error" class="error" for="photo" style="color: #B81111">:message</p>') !!}
@@ -55,7 +55,7 @@
 		                      </p>
 
 		                </div>
-		                <input type="file" name="photo" id="file-input2" class="d-none" data-validate-field="photo" value="{{old('photo')}}">
+		                <input type="file" name="photo" id="file-input2" class="d-none" data-validate-field="photo" value="{{old('photo')}}" onchange="loadFile(event)">
                     </div>
                   </div>
                   <div class="col-6 text-center">
@@ -194,6 +194,15 @@
             },
         },
     });
+
+  var loadFile = function(event) {
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
+    }
+    $('#output').attr('width','50%');
+  };
 </script>
 @endsection
 

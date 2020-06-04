@@ -28,8 +28,11 @@ Route::post('admin/logout', 'Auth\LoginController@logout')->name('admin.logout')
 
 Route::middleware('auth')->group(function () {
 
-	Route::get('dashboard-ecommerce','AdminController@index')->name('admin.dashboard');
+  Route::get('dashboard-ecommerce','AdminController@index')->name('admin.dashboard');
 	Route::get('/dashboard-analytics','DashboardController@dashboardAnalytics');
+
+  Route::get('acount-settings/{id}/edit','AdminController@edit')->name('admin.account.edit');
+  Route::put('acount-settings/{id}','AdminController@update')->name('admin.account.update');
 
   	Route::get('acount-settings/{id}/edit','AdminController@edit')->name('admin.account.edit');
   	Route::put('acount-settings/{id}','AdminController@update')->name('admin.account.update');

@@ -76,7 +76,7 @@
   </section>
   <section class="how-we-work" id="Technology">
     <div class="container">
-      <h3 class="text-white text-center text-capitalize p-5">how <span class="font-weight-bold">we work</span></h3>
+      <h3 class="text-white text-center text-capitalize p-5 mt-3">how <span class="font-weight-bold">we work</span></h3>
       <p class="text-white text-center">With WAZU customers take pictures (no QR codes , no barcodes) and find details about the products that they’re interested in.
       <br>
       WAZU allows you to create custom experiences for your customers. <br> You can run promotions, educate customers or send them directly to your personal website in seconds. <br> Easily discover where you need retail distribution by learning the location of the customers are looking for your products.

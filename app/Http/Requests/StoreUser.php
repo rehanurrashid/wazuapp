@@ -26,7 +26,7 @@ class StoreUser extends FormRequest
         return [
             'name' => 'bail|required|string|max:255',
             // 'username' => 'bail|required|unique:users,username,'.auth()->user()->id,
-            'password' => 'bail|required|confirmed',
+            // 'password' => 'bail|required|confirmed',
             'email' => 'bail|required|unique:users',
             'phone' => 'required|unique:user_profiles',
             'address' => 'bail|required',

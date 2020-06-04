@@ -103,6 +103,7 @@ class ProductController extends Controller
      */
     public function store(StoreProduct $request)
     {
+
         $product = new product;
 
         if ($request['photo']){

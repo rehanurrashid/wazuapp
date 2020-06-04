@@ -23,7 +23,7 @@ class AdminController extends Controller
     	// return dd($id);
         $user = User::with(['profile'])->where('id',$id)->latest()->first();
         
-        return view('admin.edit',compact('user'));
+        return view('pages.edit',compact('user'));
     }
 
      public function update(Request $request, $id)
@@ -39,7 +39,8 @@ class AdminController extends Controller
             $request['picture'] = $request->file('photo')->store('public/storage');
             $request['picture'] = Storage::url($request['picture']);
             $request['picture'] = asset($request['picture']);
-            $filename = $request->file('photo')->hashName();
+            // $filename = $request->file('photo')->hashName();
+            $filename = $request['picture'];
 
         }
         else{

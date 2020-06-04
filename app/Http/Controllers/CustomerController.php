@@ -64,10 +64,11 @@ class CustomerController extends Controller
             $request['picture'] = $request->file('photo')->store('public/storage');
             $request['picture'] = Storage::url($request['picture']);
             $request['picture'] = asset($request['picture']);
-            $filename = $request->file('photo')->hashName();
+            // $filename = $request->file('photo')->hashName();
+            $filename = $request['picture'];
         }
         else{
-            $filename = 'profileavatar.png';
+            $filename = asset('profileavatar.png');
         }
         
         $password = Str::random(8);
