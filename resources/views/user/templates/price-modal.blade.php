@@ -11,6 +11,21 @@
             <div class="modal-body rounded-lg" style="background-color: #E8E8E8;">
               <div class="container">
                 <div>
+                    @if(Session::has('not-authorized'))
+                        <p class="alert alert-danger">{{Session::get('not-authorized') }}</p>
+                    @endif
+                </div>
+                <div>
+                    @if(Session::has('successfully-registered'))
+                        <p class="alert alert-success">{{Session::get('successfully-registered') }}</p>
+                    @endif
+                </div>
+                <div>
+                    @if(Session::has('successfully-registered') || Session::has('not-authorized'))
+                        <p class="alert alert-info">You have to buy package to access dashboard.</p>
+                    @endif
+                </div>
+                <div>
                     @if(Session::has('check'))
                         <p class="alert alert-warning">{{Session::get('check') }}</p>
                     @endif

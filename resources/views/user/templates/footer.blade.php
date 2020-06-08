@@ -60,7 +60,7 @@
                     <a href="{{route('privacy-policy')}}" class="ml-3 text-decoration-none text-white">Privacy Policy</a>
                     <a href="{{route('terms-conditions')}}" class="ml-3 text-decoration-none text-white">Terms & Conditions</a>
                     <a href="#" class="ml-3 text-decoration-none text-white">FAQ's</a>
-                    <a href="#" class="ml-3 text-decoration-none text-white">Contact Support</a>
+                    <a class="ml-3 text-decoration-none text-white" href="mailto:hope@ienjoyit.co">Contact Support</a>
                 </div>
 
             </div>

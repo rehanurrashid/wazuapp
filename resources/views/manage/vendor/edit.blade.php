@@ -28,7 +28,7 @@
                     <div class="form-label-group position-relative has-icon-left">
                       <div class="text-center">
 		                  <label for="file-input2" style="cursor: pointer;">
-		                    <img class="round rounded-circle" width="120" height="120" src="{{ !empty($vendor->profile->photo) ? $vendor->profile->photo : asset('images/Group 71.png')}}"  id="output">
+		                    <img class="round rounded-circle" width="150" height="150" src="{{ !empty($vendor->profile->photo) ? $vendor->profile->photo : asset('images/Group 71.png')}}"  id="output">
 		                  </label>
 		                  <p class="text-center text-muted text-capitalize">upload image</p><br>
 		                    {!! $errors->first('photo', '<p style="color: #B81111" id="photo-error" class="error" for="photo" style="color: #B81111">:message</p>') !!}
@@ -189,7 +189,7 @@
     output.onload = function() {
       URL.revokeObjectURL(output.src) // free memory
     }
-    $('#output').attr('width','50%');
+    $('#output').css({'width':'150px','height':'150px'});
   };
 </script>
 @endsection

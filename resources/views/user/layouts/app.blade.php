@@ -36,6 +36,15 @@
             phone: {
                 required: true
             },
+            password : {
+                strength: {
+                default: true,
+
+              },
+            },
+            password_confirmation: {
+              equalTo: "#password"
+            },
         },
         messages: {
             name: {
@@ -60,17 +69,24 @@
             phone: {
                 required: 'Phone number is required',
             },
+
         },
     });
 </script>
 <script type="text/javascript">
   $(document).ready(function(){
     
-    @if ($errors->any())
-      window.$('#exampleModalCenter').modal('show'); 
+    @if (Session::has('sign-up-error'))
+      window.$('#exampleModalCenter').modal('show');
+      window.$('#exampleModalCenter').addClass('show')
     @endif
 
-    @if(Session::has('message') || Session::has('plan_failed') || Session::has('plan_already_activated'))
+    @if (Session::has('sign-in-error'))
+      window.$('#exampleModalCenter1').modal('show');
+      window.$('#exampleModalCenter1').addClass('show')
+    @endif
+    
+    @if(Session::has('successfully-registered') || Session::has('plan_failed') || Session::has('plan_already_activated') || Session::has('not-authorized'))
         window.$('#exampleModalCenter2').modal('show'); 
     @endif
 

@@ -26,12 +26,20 @@
               <li class="nav-item">
                 <a class="nav-link text-nav mr-5 text-white" href="{{url('dashboard-ecommerce')}}" >My Account</a>
               </li>
+              <li class="nav-item">
+                <a href="{{ route('admin.logout') }}"
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link text-nav text-white">Logout
+                </a>
+              </li>
+              <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                  @csrf
+              </form>
               @else
               <li class="nav-item">
                 <a class="nav-link text-nav mr-5 text-white" href="#SignUp" data-toggle="modal" data-target="#exampleModalCenter">SignUp</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-nav mr-5 text-white" href="#SIgnIn" data-toggle="modal" data-target="#exampleModalCenter1">Sign In</a>
+                <a class="nav-link text-nav mr-5 text-white" href="{{ url('/admin/login') }}">Sign In</a>
               </li>
               @endif
             </ul>

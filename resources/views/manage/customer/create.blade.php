@@ -188,7 +188,7 @@
     output.onload = function() {
       URL.revokeObjectURL(output.src) // free memory
     }
-    $('#output').attr('width','50%');
+    $('#output').css({'width':'150px','height':'150px'});
   };
 
 </script>

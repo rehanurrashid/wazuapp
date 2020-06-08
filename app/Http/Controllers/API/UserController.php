@@ -34,6 +34,10 @@ public $successStatus = 200;
             if (auth()->user()->status != 1){
                 return response()->json(['message'=>'User can not Login'], 401);
             }
+            if (auth()->user()->role != 'customer'){
+                return response()->json(['message'=>'You are not authorized. Only customers can login.'], 401);
+            }
+
             $token = auth()->user()->createToken('Web')->accessToken;
 
             return response()->json(['token' => $token,'user'=> Auth::user()], 200);
@@ -52,19 +56,12 @@ public $successStatus = 200;
             'name' => 'required',
             'email' => 'required|email:rfc|unique:users',
             'password' => 'required',
-            // 'c_password' => 'required|same:password',
-            // 'address' => 'required',
-            // 'city' => 'required',
-            // 'country' => 'required',
-            // 'photo' => 'required',
-            // 'phone' => 'required',
         ]);
         if ($validator->fails()) {
                     return response()->json(['error'=>$validator->errors()], 401);
             }
 
         $user = User::create([
-            // 'picture' => $request->picture,
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
@@ -73,11 +70,6 @@ public $successStatus = 200;
 
         $profile = new UserProfile([
                 'user_id' => $user->id,
-                // 'address'  => $request->address,
-                // 'city'  => $request->city,
-                // 'country'   => $request->country,
-                // 'phone' =>  $request->phone,
-                // 'photo' => $request->photo,
             ]);
 
         $profile = $user->profile()->save($profile);

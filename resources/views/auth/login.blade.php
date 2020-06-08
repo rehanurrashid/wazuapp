@@ -21,6 +21,11 @@
               </div>
             </div>
             <div class="card-content">
+              <div>
+                    @if(Session::has('not-authorized'))
+                        <p class="alert alert-danger">{{Session::get('not-authorized') }}</p>
+                    @endif
+                </div>
               <div class="card-body">
                 {{-- form  --}}
                 <form method="POST" action="{{ route('login') }}">

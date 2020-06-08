@@ -62,7 +62,7 @@
                                                 <div class="col">
                                                     @if($recipe->image != Null)
                                                     <div class="form-group ml-3">
-                                                        <img src="{{$recipe->image}}" alt="" class="img-thumbnail" width="50%">
+                                                        <img src="{{$recipe->image}}" alt="" class="img-thumbnail" width="200px" height="200px">
                                                     </div>
                                                     @else
                                                     <h4 class="text-info">No Image Uploaded Yet!</h4>

@@ -42,7 +42,7 @@
                 <p class="text-white font-style-1 text-top">Help customers recognize your products, extend customer lifetime value through customizable brand experiences and direct them directly to your website or social media channels.</p>
               </div>
               <div class="left-center mt-4">
-                <a class="btn btn-dark btn-b text-capitalize rounded text-light"  href="{{route('contact-us')}}">contact us</a>
+                <a class="btn btn-dark btn-b text-capitalize rounded text-light" href="mailto:support@wazuapp.com">contact us</a>
               <a class="btn btn-dark btn-b ml-3 text-capitalize rounded text-light" href="{{url('https://apps.apple.com/us/app/wazu/id1511788564')}}" target="_blank">download</a>
             </div>
             </div>
@@ -374,11 +374,17 @@
 <script type="text/javascript">
   $(document).ready(function(){
     
-    @if ($errors->any())
-      window.$('#exampleModalCenter').modal('show'); 
+    @if (Session::has('sign-up-error'))
+      window.$('#exampleModalCenter').modal('show');
+      window.$('#exampleModalCenter').addClass('show')
     @endif
 
-    @if(Session::has('message') || Session::has('plan_failed') || Session::has('plan_already_activated'))
+    @if (Session::has('sign-in-error'))
+      window.$('#exampleModalCenter1').modal('show');
+      window.$('#exampleModalCenter1').addClass('show')
+    @endif
+
+    @if(Session::has('successfully-registered') || Session::has('plan_failed') || Session::has('plan_already_activated') || Session::has('not-authorized'))
         window.$('#exampleModalCenter2').modal('show'); 
         window.$('#exampleModalCenter2').addClass('show')
     @endif
