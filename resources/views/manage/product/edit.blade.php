@@ -42,11 +42,12 @@
                 <div class="row">
                  <div class="col-6 text-center mb-3">
                     <div class="form-label-group position-relative has-icon-left">
-                      <div class="">
+                      <div class="label-image">
                       <label for="file-input2" style="cursor: pointer;">
-                        <img class="modal-img rounded-circle" src="{{asset('images/Group 71.png')}}" id="output" height="150px" width="150px">
+                        <img class="modal-img rounded-circle" src="{{asset('images/Group 71.png')}}" id="output" height="100px" width="100px">
                       </label>
-                      <p class="text-center text-muted text-capitalize">upload image</p><br>
+                      <div class="file-name"><p class="text-center text-muted text-capitalize">upload image</p></div>
+                      <br>
                         {!! $errors->first('photo', '<p style="color: #B81111" id="photo-error" class="error" for="photo" style="color: #B81111">:message</p>') !!}
                           <p id="error1" style="display:none; color:#B81111;">
                             Invalid Image Format! Image Format Must Be JPG, JPEG, PNG or GIF.
@@ -66,11 +67,12 @@
                   </div>
                   <div class="col-6 text-center mb-3">
                     <div class="form-label-group position-relative has-icon-left">
-                      <div class="">
+                      <div class="label-video">
                       <label for="file-input1" style="cursor: pointer;">
-                        <img class="modal-img" src="{{asset('images/video.png')}}" height="150px" width="150px">
+                        <img class="modal-img" src="{{asset('images/video.png')}}" height="100px" width="100px">
                       </label>
-                      <p class="text-center text-muted text-capitalize">upload video</p><br>
+                      <div class="file-name"><p class="text-center text-muted text-capitalize">upload video</p></div>
+                      <br>
                       {!! $errors->first('video', '<label id="video-error" class="error" for="video">:message</label>') !!}
                       <p id="videoerror1" style="display:none; color:#B81111;">
                       Invalid Video Format! Video Format Must Be MP4, Webm, Flv.
@@ -98,7 +100,7 @@
                   <div class="col-12">
                     <div class="form-group">
                       @php $user[''] = 'Please Select Vendor'; @endphp
-                      {{ Form::select('user_id', $user ,null, ['class' => 'form-control select2', 'style'=> 'margin-bottom:20px;' , 'data-validate-field' => 'user_id']) }}
+                      {{ Form::select('user_id', $user ,null, ['class' => 'form-control select2', 'style'=> 'margin-bottom:20px;' , 'data-validate-field' => 'user_id' ,'id' => 'user_id']) }}
                     </div>
                   </div>
                   @else
@@ -111,7 +113,7 @@
                       @php $category[''] = 'Please Select Category'; @endphp
                       {{
 
-                        Form::select('category_id', $category ,null, ['class' => 'form-control select2 ', 'style'=> 'margin-bottom:20px;' , 'data-validate-field' => 'category_id'])
+                        Form::select('category_id', $category ,null, ['class' => 'form-control select2 ', 'style'=> 'margin-bottom:20px;' , 'data-validate-field' => 'category_id','id' => 'category_id'])
                       }}
                     </div>
                   </div>
@@ -127,6 +129,7 @@
                     </div>
                   </div>
                   <div class="col-12">
+                    <label for="email-id-floating-icon" class="d-none label-tags">tags<span style="color:red;">*</span></label>
                     <div class="form-label-group position-relative has-icon-left">
                       {{ Form::text('tags',old('tags'),array('class'=>'form-control', 'style'=> 'margin-bottom:10px;','placeholder'=>'Enter Tags', 'data-role' => 'tagsinput' ,'id' => 'courseTags' , 'data-validate-field' => 'tags')) }}
 
@@ -147,7 +150,7 @@
                   </div>
                   <div class="col-12">
                     <div class="form-label-group position-relative has-icon-left">
-                      {{ Form::text('address',old('address'),array('class'=>'form-control', 'style'=> 'margin-bottom:10px;','placeholder'=>'Enter Address' ,'data-validate-field' => 'address')) }}
+                      {{ Form::text('address',old('address'),array('class'=>'form-control', 'style'=> 'margin-bottom:10px;','placeholder'=>'Enter Product Address' ,'data-validate-field' => 'address')) }}
                       {!! $errors->first('address', '<p style="color: #B81111" id="address-error" class="error" for="address">:message</p>') !!}
                       <div class="form-control-position">
                         <i class="bx bx-mail-send"></i>
@@ -160,7 +163,7 @@
                       {{ Form::text('price',old('price'),array('class'=>'form-control', 'style'=> 'margin-bottom:10px;','placeholder'=>'Enter Product Price' ,'data-validate-field' => 'price')) }}
                       {!! $errors->first('price', '<p style="color: #B81111" id="price-error" class="error" for="price">:message</p>') !!}
                       <div class="form-control-position">
-                        <i class="bx bx-mail-send"></i>
+                        <i class="bx bx-dollar-circle"></i>
                       </div>
                       <label for="price-id-floating-icon">Price<span style="color:red;">*</span></label>
                     </div>
@@ -177,7 +180,7 @@
                   </div>
                   <div class="col-12 d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary mr-1 mb-1">{{(isset($product)) ? 'Update' : 'Save'}}</button>
-                    <button type="reset" class="btn btn-light-secondary mr-1 mb-1">Reset</button>
+                    <a id="reset" class="btn btn-light-secondary mr-1 mb-1 "  style="cursor: pointer;">Reset</a>
                   </div>
                 </div>
               </div>
@@ -261,8 +264,48 @@
     output.onload = function() {
       URL.revokeObjectURL(output.src) // free memory
     }
-    $('#output').css({'width':'150px','height':'150px'});
-  };
+    $('#output').css({'width':'100px','height':'100px'});
+  }
+
+  $('#file-input2').change(function(){
+      let file_name = $(this)[0].files[0].name;
+      let template = '<p class="text-center text-muted text-capitalize">upload image</p> <p class="text-center text-muted text-capitalize">'+file_name+'</p>';
+      $(this).prev('div.label-image').find('div.file-name').html(template);
+      $(this).parents('div.form-label-group').next('h4.text-info').addClass('d-none')
+    })
+
+    $('#file-input1').change(function(){
+      let file_name = $(this)[0].files[0].name;
+      let template = '<p class="text-center text-muted text-capitalize">upload video</p> <p class="text-center text-muted text-capitalize">'+file_name+'</p>';
+      $(this).prev('div.label-video').find('div.file-name').html(template);
+      $(this).parents('div.form-label-group').next('h4.text-info').addClass('d-none')
+    })
+
+    $('#reset').click(function(){ 
+
+      $("select#user_id").select2({
+          placeholder: "Please Select Vendor"
+      });
+      $("select#category_id").select2({
+          placeholder: "Please Select Category"
+      });
+
+      $('#output').attr('src','{{ asset("images/Group 71.png") }}')
+      $('div.bootstrap-tagsinput').tagsinput('removeAll');
+      $('label.label-tags').removeClass('d-none')
+
+      let label_image = '<p class="text-center text-muted text-capitalize">upload image</p>';
+      let label_video = '<p class="text-center text-muted text-capitalize">upload video</p>';
+
+      $('div.label-image').find('div.file-name').html(label_image)
+      $('div.label-video').find('div.file-name').html(label_video)
+
+      $('textarea[name="description"]').text('')
+      $('.js-form').find('input[type=text]').val('')
+
+      $('img.img-thumbnail').addClass('d-none')
+      $('video.img-thumbnail').addClass('d-none')
+    })
 </script>
 @endsection
 

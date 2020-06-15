@@ -373,7 +373,7 @@
 </script>
 <script type="text/javascript">
   $(document).ready(function(){
-    
+
     @if (Session::has('sign-up-error'))
       window.$('#exampleModalCenter').modal('show');
       window.$('#exampleModalCenter').addClass('show')

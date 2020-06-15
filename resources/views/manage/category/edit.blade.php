@@ -46,7 +46,7 @@
                   </div>
                   <div class="col-12 d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary mr-1 mb-1">{{(isset($category)) ? 'Update' : 'Save'}}</button>
-                    <button type="reset" class="btn btn-light-secondary mr-1 mb-1">Reset</button>
+                    <a id="reset" class="btn btn-light-secondary mr-1 mb-1 "  style="cursor: pointer;">Reset</a>
                   </div>
                 </div>
               </div>
@@ -82,6 +82,9 @@
             },
         },
     });
+    $('#reset').click(function(){ 
+      $('.js-form').find('input[type=text]').val('')
+    })
 </script>
 @endsection
 

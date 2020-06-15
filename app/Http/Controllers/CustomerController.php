@@ -26,9 +26,31 @@ class CustomerController extends Controller
     {
         if($request->ajax()){
 
-            $customer = User::customer()->select('users.*')->with('scans')->withCount('scans');
-            // dd($customer->scans_count);
-            return Datatables::of($customer)
+            $customer = User::customer()->select('users.*')->with('scans')->withCount('scans')->get();
+            // if(is_numeric($request->scan)){
+
+
+            //     foreach ($customer as $c) {
+            //         // return response([$c->id]);
+            //        if($c->id == $request->scan){
+
+            //         $customer->filter = $c;
+            //        }
+            //     }
+            //     $customer = $customer->filter;
+            //     return response($customer);
+            //     return Datatables::of($customer)
+            //         ->addColumn('action', function ($customer) {
+            //             return view('manage.actions.actions_customer',compact('customer'));
+            //             })
+            //         ->addColumn('scans', function ($customer) {
+            //             return view('manage.actions.user_scans_list',compact('customer'));
+            //             })
+            //         ->editColumn('id', 'ID: {{$id}}')
+            //         ->make(true);
+            // }
+            // else{
+                return Datatables::of($customer)
                 ->addColumn('action', function ($customer) {
                     return view('manage.actions.actions_customer',compact('customer'));
                     })
@@ -37,6 +59,8 @@ class CustomerController extends Controller
                     })
                 ->editColumn('id', 'ID: {{$id}}')
                 ->make(true);
+            // }
+            
         }
        return view('manage.customer.index');
     }

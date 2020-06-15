@@ -29,6 +29,11 @@
       <div class="row">
         <div class="col-lg-12">
             <div>
+                @if(Session::has('authenticated'))
+                    <p class="alert {{ Session::get('alert-class', 'alert-success') }}">{{ Session::get('authenticated') }}</p>
+                @endif
+            </div>
+            <div>
                 @if(Session::has('message'))
                     <p class="alert {{ Session::get('alert-class', 'alert-success') }}">{{ Session::get('message') }}</p>
                 @endif

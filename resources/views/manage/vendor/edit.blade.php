@@ -28,7 +28,7 @@
                     <div class="form-label-group position-relative has-icon-left">
                       <div class="text-center">
 		                  <label for="file-input2" style="cursor: pointer;">
-		                    <img class="round rounded-circle" width="150" height="150" src="{{ !empty($vendor->profile->photo) ? $vendor->profile->photo : asset('images/Group 71.png')}}"  id="output">
+		                    <img class="round rounded-circle" height="100px" width="100px" src="{{ !empty($vendor->profile->photo) ? $vendor->profile->photo : asset('images/Group 71.png')}}"  id="output">
 		                  </label>
 		                  <p class="text-center text-muted text-capitalize">upload image</p><br>
 		                    {!! $errors->first('photo', '<p style="color: #B81111" id="photo-error" class="error" for="photo" style="color: #B81111">:message</p>') !!}
@@ -109,7 +109,7 @@
                   
                   <div class="col-12 d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary mr-1 mb-1">{{(isset($vendor)) ? 'Update' : 'Save'}}</button>
-                    <button type="reset" class="btn btn-light-secondary mr-1 mb-1">Reset</button>
+                    <a id="reset" class="btn btn-light-secondary mr-1 mb-1 "  style="cursor: pointer;">Reset</a>
                   </div>
                 </div>
               </div>
@@ -154,9 +154,6 @@
             phone: {
                 required: true
             },
-            photo: {
-                required: true
-            },
         },
         messages: {
             name: {
@@ -177,9 +174,6 @@
             address: {
                 required: 'Address is required',
             },
-            photo: {
-                required: 'Image is required',
-            },
         },
     });
 
@@ -189,7 +183,17 @@
     output.onload = function() {
       URL.revokeObjectURL(output.src) // free memory
     }
-    $('#output').css({'width':'150px','height':'150px'});
+    $('#output').css({'width':'100px','height':'100px'});
   };
+
+  $('#reset').click(function(){ 
+
+      $('#output').attr('src','{{ asset("images/Group 71.png") }}')
+
+      $('textarea[name="recipe"]').text('')
+      $('.js-form').find('input[type=text]').val('')
+      $('.js-form').find('input[type=email]').val('')
+      $('img.img-thumbnail').addClass('d-none')
+    })
 </script>
 @endsection

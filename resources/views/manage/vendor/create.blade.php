@@ -28,7 +28,7 @@
                     <div class="form-label-group position-relative has-icon-left">
                       <div class="text-center">
 		                  <label for="file-input2" style="cursor: pointer;">
-		                    <img class="modal-img rounded-circle" src="{{asset('images/Group 71.png')}}" id="output" >
+		                    <img class="modal-img rounded-circle" src="{{asset('images/Group 71.png')}}" id="output" height="100px" width="100px" >
 		                  </label>
 		                  <p class="text-center text-muted text-capitalize">upload image</p><br>
 		                    {!! $errors->first('photo', '<p style="color: #B81111" id="photo-error" class="error" for="photo" style="color: #B81111">:message</p>') !!}
@@ -187,8 +187,18 @@
     output.onload = function() {
       URL.revokeObjectURL(output.src) // free memory
     }
-    $('#output').css({'width':'150px','height':'150px'});
+    $('#output').css({'width':'100px','height':'100px'});
   };
+
+  $('#reset').click(function(){ 
+
+      $('#output').attr('src','{{ asset("images/Group 71.png") }}')
+
+      $('textarea[name="recipe"]').text('')
+      $('.js-form').find('input[type=text]').val('')
+
+      $('img.img-thumbnail').addClass('d-none')
+    })
 
 </script>
 @endsection

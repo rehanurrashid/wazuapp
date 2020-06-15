@@ -24,11 +24,11 @@ class StoreUser extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'bail|required|string',
+            'name' => 'bail|required',
             'email' => 'bail|required|unique:users',
             'address' => 'bail|required',
-            'city' => 'bail|required|alpha_dash',
-            'country' => 'bail|required|alpha_dash',
+            'city' => 'bail|required',
+            'country' => 'bail|required',
         ];
     }
 }

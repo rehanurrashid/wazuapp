@@ -88,11 +88,18 @@
 <script>
     $(function() {
         $('#rtable').DataTable({
+
             processing: true,
             serverSide: true,
             autoWidth: false,
             responsive: true,
-            ajax: '{!! route('customers.index') !!}',
+            ajax: {
+              url: '{!! route('customers.index') !!}',
+              type: 'GET',
+              data: function (d) {
+              d.scan = $('input[type="search"]').val();
+              }
+             },
             columns: [
                 { data: 'id', name: 'id' },
                 { data: 'name', name: 'name' },

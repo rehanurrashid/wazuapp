@@ -132,21 +132,8 @@ class VendorController extends Controller
         $password = Str::random(8);
         $hash_password = Hash::make($password);
 
-        if($request->hasFile('photo')){
-            // storing image
-            $originalImage= $request->file('photo');
-            $request['picture'] = $request->file('photo')->store('public/storage');
-            $request['picture'] = Storage::url($request['picture']);
-            $request['picture'] = asset($request['picture']);
-            // $filename = $request->file('photo')->hashName();
-            $filename = $request['picture'];
-
-        }
-        else{
-            $filename = $vendor->profile->image;
-        } 
-        
         $vendor = User::find($id);
+        
         $vendor->name = $request->name;
         $vendor->email = $request->email;
         $vendor->password = $hash_password;
@@ -158,12 +145,19 @@ class VendorController extends Controller
 
             $profile = UserProfile::where('user_id' ,$id)->first();
 
-                $profile->address   = $request->address;
-                $profile->city      = $request->city;
-                $profile->country   = $request->country;
-                $profile->phone     = $request->phone;
-                $profile->photo     = $filename;
-                $profile->save();
+            if($request->hasFile('photo')){
+                // storing image
+                $originalImage= $request->file('photo');
+                $request['picture'] = $request->file('photo')->store('public/storage');
+                $request['picture'] = Storage::url($request['picture']);
+                $profile->photo     = asset($request['picture']);
+            }
+
+            $profile->address   = $request->address;
+            $profile->city      = $request->city;
+            $profile->country   = $request->country;
+            $profile->phone     = $request->phone;
+            $profile->save();
 
             // $profile = $vendor->profile()->save($profile);
             if($profile){

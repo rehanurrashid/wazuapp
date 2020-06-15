@@ -41,11 +41,12 @@
                 <div class="row">
                  <div class="col-6 text-center">
                     <div class="form-label-group position-relative has-icon-left">
-                      <div class="">
+                      <div class="label-image">
 		                  <label for="file-input2" style="cursor: pointer;">
-		                    <img class="modal-img rounded-circle" src="{{asset('images/Group 71.png')}}" id="output" >
+		                    <img class="modal-img rounded-circle" src="{{asset('images/Group 71.png')}}" id="output" height="100px" width="100px" >
 		                  </label>
-		                  <p class="text-center text-muted text-capitalize">upload image</p><br>
+                      <div class="file-name"><p class="text-center text-muted text-capitalize">upload image</p></div>
+		                  <br>
 		                    {!! $errors->first('photo', '<p style="color: #B81111" id="photo-error" class="error" for="photo" style="color: #B81111">:message</p>') !!}
 		                      <p id="error1" style="display:none; color:#B81111;">
 		                        Invalid Image Format! Image Format Must Be JPG, JPEG, PNG or GIF.
@@ -60,11 +61,12 @@
                   </div>
                   <div class="col-6 text-center">
                     <div class="form-label-group position-relative has-icon-left">
-                      <div class="">
+                      <div class="label-video">
                       <label for="file-input1" style="cursor: pointer;">
-                        <img class="modal-img" src="{{asset('images/video.png')}}" width="36%">
+                        <img class="modal-img" src="{{asset('images/video.png')}}" height="100px" width="100px">
                       </label>
-                      <p class="text-center text-muted text-capitalize">upload video</p><br>
+                      <div class="file-name"><p class="text-center text-muted text-capitalize">upload video</p></div>
+                      <br>
                       {!! $errors->first('video', '<label id="video-error" class="error" for="video">:message</label>') !!}
                       <p id="videoerror1" style="display:none; color:#B81111;">
                       Invalid Video Format! Video Format Must Be MP4, Webm, Flv.
@@ -78,7 +80,7 @@
                   </div>
                   <div class="col-12">
                     <div class="form-label-group position-relative has-icon-left">
-                      {{ Form::text('title',old('title'),array('class'=>'form-control', 'style'=> 'margin-bottom:10px;','placeholder'=>'Enter Product Title' ,'id' => 'title','data-validate-field' => 'title')) }}
+                      {{ Form::text('title',old('title'),array('class'=>'form-control', 'style'=> 'margin-bottom:10px;','placeholder'=>'Enter Recipe Title' ,'id' => 'title','data-validate-field' => 'title')) }}
                       {!! $errors->first('title', '<p id="title-error" class="error" for="title" style="color: #B81111">:message</p>') !!}
                       <div class="form-control-position">
                         <i class="bx bx-user"></i>
@@ -87,8 +89,9 @@
                     </div>
                   </div>
                   <div class="col-12">
+                    <label for="email-id-floating-icon" class="d-none label-tags">INGREDIENTS<span style="color:red;">*</span></label>
                     <div class="form-label-group position-relative has-icon-left">
-                      {{ Form::text('ingredients',old('ingredients'),array('class'=>'form-control', 'style'=> 'margin-bottom:10px;','placeholder'=>'Enter Recipe Ingredients', 'data-role' => 'tagsinput' ,'id' => 'courseTags' , 'data-validate-field' => 'ingredients')) }}
+                      {{ Form::text('ingredients',old('ingredients'),array('class'=>'form-control', 'style'=> 'margin-bottom:10px;','placeholder'=>'Enter Recipe Ingredients', 'data-role' => 'tagsinput' ,'id' => 'ingredients' , 'data-validate-field' => 'ingredients')) }}
 
                       {!! $errors->first('ingredients', '<p id="ingredients-error" class="error" for="ingredients" style="color: #B81111">:message</p>') !!}
 
@@ -105,7 +108,7 @@
                       <label for="recipe-id-floating-icon">Description<span style="color:red;">*</span></label>
                     </div>
                   </div>
-                                    <div class="col-12">
+                  <div class="col-12">
                     <div class="form-label-group position-relative has-icon-left">
                       {{ Form::text('site_url',old('site_url'),array('class'=>'form-control', 'style'=> 'margin-bottom:10px;','placeholder'=>'Enter Site Url', 'data-validate-field' => 'site_url')) }}
                       {!! $errors->first('site_url', '<p id="site_url-error" class="error" for="site_url" style="color: #B81111">:message</p>') !!}
@@ -117,7 +120,7 @@
                   </div>
                   <div class="col-12">
                     <div class="form-label-group position-relative has-icon-left">
-                      {{ Form::text('address',old('address'),array('class'=>'form-control', 'style'=> 'margin-bottom:10px;','placeholder'=>'Enter Address' ,'data-validate-field' => 'address')) }}
+                      {{ Form::text('address',old('address'),array('class'=>'form-control', 'style'=> 'margin-bottom:10px;','placeholder'=>'Enter Recipe Address (Kitchen Location)' ,'data-validate-field' => 'address')) }}
                       {!! $errors->first('address', '<p style="color: #B81111" id="address-error" class="error" for="address">:message</p>') !!}
                       <div class="form-control-position">
                         <i class="bx bx-mail-send"></i>
@@ -127,10 +130,10 @@
                   </div>
                   <div class="col-12">
                     <div class="form-label-group position-relative has-icon-left">
-                      {{ Form::text('price',old('price'),array('class'=>'form-control', 'style'=> 'margin-bottom:10px;','placeholder'=>'Enter Product Price' ,'data-validate-field' => 'price')) }}
+                      {{ Form::text('price',old('price'),array('class'=>'form-control', 'style'=> 'margin-bottom:10px;','placeholder'=>'Enter Recipe Price' ,'data-validate-field' => 'price')) }}
                       {!! $errors->first('price', '<p style="color: #B81111" id="price-error" class="error" for="price">:message</p>') !!}
                       <div class="form-control-position">
-                        <i class="bx bx-mail-send"></i>
+                        <i class="bx bx-dollar-circle"></i>
                       </div>
                       <label for="price-id-floating-icon">Price<span style="color:red;">*</span></label>
                     </div>
@@ -201,8 +204,35 @@
     output.onload = function() {
       URL.revokeObjectURL(output.src) // free memory
     }
-    $('#output').css({'width':'150px','height':'150px'});
+    $('#output').css({'width':'100px','height':'100px'});
   };
+
+  $('#file-input2').change(function(){
+    let file_name = $(this)[0].files[0].name;
+    let template = '<p class="text-center text-muted text-capitalize">upload image</p> <p class="text-center text-muted text-capitalize">'+file_name+'</p>';
+    $(this).prev('div.label-image').find('div.file-name').html(template);
+  })
+
+  $('#file-input1').change(function(){
+    let file_name = $(this)[0].files[0].name;
+    let template = '<p class="text-center text-muted text-capitalize">upload video</p> <p class="text-center text-muted text-capitalize">'+file_name+'</p>';
+    $(this).prev('div.label-video').find('div.file-name').html(template);
+  })
+
+  $('button[type="reset"]').click(function(){ 
+    $('#output').attr('src','{{ asset("images/Group 71.png") }}');
+    $('div.bootstrap-tagsinput').tagsinput('removeAll');
+    $('label.label-tags').removeClass('d-none')
+
+    let label_image = '<p class="text-center text-muted text-capitalize">upload image</p>';
+    let label_video = '<p class="text-center text-muted text-capitalize">upload video</p>';
+
+    $('div.label-image').find('div.file-name').html(label_image)
+    $('div.label-video').find('div.file-name').html(label_video)
+
+    
+  })
+
 </script>
 @endsection
 

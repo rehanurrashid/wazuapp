@@ -3,7 +3,8 @@
 <button type="button" class="btn btn-warning w-50 total-scans" data-toggle="modal" 
 data-target="{{ ($customer->scans_count != 0) ? '#exampleModalCenter' : ''}}">
   {{ $customer->scans_count }}
-</button>
+</button> 
+
     @if(count($customer->scans))
         <p class="total-products-visited d-none"> {{ count($customer->scans) }}</p>
        <table class="table table-hover product-details d-none">

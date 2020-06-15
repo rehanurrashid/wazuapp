@@ -66,9 +66,6 @@
 <script src="{{ asset('js/just-validate.min.js') }}"></script>
 <script type="text/javascript">
 
-        // searchable dropdown
-    // $('.select2').select2();
-
         new window.JustValidate('.js-form', {
         rules: {
             name: {
@@ -82,6 +79,7 @@
             },
         },
     });
+
 </script>
 @endsection
 
