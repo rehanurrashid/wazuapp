@@ -55,6 +55,7 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th class="w-25">Total Scans</th>
+                            <th >View Scans</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
@@ -104,6 +105,7 @@
                 { data: 'id', name: 'id' },
                 { data: 'name', name: 'name' },
                 { data: 'email', name: 'email' },
+                { data: 'scans_count', name: 'scans_count' },
                 { data: 'scans', name: 'scans' },
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ],
@@ -125,8 +127,13 @@
                         "className": "dt-center", "targets": "_all"
                     }
                 ],
+            },
+            rowCallback: function( row, data ) {
+                console.log(row)
+            if ( data.grade == "A" ) {
+              $('td:eq(4)', row).html( '<b>A</b>' );
             }
-
+          }
         });
     });
 </script>
@@ -141,7 +148,11 @@
             $('.product-list').html(tableTemplate);
             $('span.products-visited').html(totalProductsTemplate);
         });
+
+
+
     })
+
 </script>
 @endsection
 

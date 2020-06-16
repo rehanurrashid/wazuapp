@@ -4,6 +4,7 @@
         var assetBaseUrl = "{{ asset('') }}";
     </script>
     <script src="{{asset('vendors/js/vendors.min.js')}}"></script>
+    <script src="http://malsup.github.com/jquery.form.js"></script>
     <script src="{{asset('fonts/LivIconsEvo/js/LivIconsEvo.tools.js')}}"></script>
     <script src="{{asset('fonts/LivIconsEvo/js/LivIconsEvo.defaults.js')}}"></script>
     <script src="{{asset('fonts/LivIconsEvo/js/LivIconsEvo.min.js')}}"></script>

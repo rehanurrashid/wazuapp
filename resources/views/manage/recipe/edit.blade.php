@@ -20,6 +20,9 @@
 
 @section('content')
 
+<div>
+    <p id="alert" class="alert alert-success d-none">Recipe Updated Successfully</p>
+  </div>
 
 <!-- // Basic multiple Column Form section start -->
 <section id="multiple-column-form">
@@ -54,6 +57,12 @@
                           <p id="error2" style="display:none; color:#B81111;">
                             Maximum File Size Limit is 5MB.
                           </p>
+
+                          <div class="progress d-none"  style="height:0.8rem">
+                        <div class="progress-bar photo-progress" role="progressbar" style="width:0;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                      </div>
+                      <div id="photo-success"></div>
+
                     </div>
                     <input type="file" name="photo" id="file-input2" class="d-none" data-validate-field="{{ (!empty($recipe->photo) ? '' : 'photo')}}" value="{{old('photo')}}" onchange="loadFile(event)">
                     </div>
@@ -78,11 +87,18 @@
                       <p id="videoerror2" style="display:none; color:#B81111;">
                       Maximum File Size Limit is 5MB.
                       </p>
+
+                      <div class="progress d-none" style="height:0.8rem">
+                        <div class="progress-bar video-progress" role="progressbar" style="width:0;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                      </div>
+                      <div id="video-success"></div>
+
+
                     </div>
                     <input type="file" name="video" id="file-input1" class="d-none" data-validate-field="video" value="{{old('video')}}">
                     </div>
                     @if(!empty($recipe->video))
-                      <video controls width="250" class="img-thumbnail">
+                      <video controls width="350" class="img-thumbnail">
 
                           <source src="{{$recipe->video}}"
                                   type="video/webm">
@@ -179,6 +195,77 @@
 @endsection
 {{-- page scripts --}}
 @section('page-scripts')
+
+<!-- // jquery form -->
+<script type="text/javascript">
+
+    $(document).ready(function(){
+      // var input = '22';
+
+    $('form').ajaxForm({
+      // data: formData,
+      beforeSend:function(){
+
+        $('#photo-success').empty();
+      },
+      uploadProgress:function(event, position, total, percentComplete)
+      {
+
+        $('.photo-progress').text(percentComplete + '%');
+        $('.photo-progress').css('width', percentComplete + '%');
+      },
+      success:function(data)
+      {
+        if(data.errors)
+        {
+          console.log(data.errors)
+          if(data.errors[0] != ''){
+            $('#user-id-error').removeClass('d-none')
+          }
+          if(data.errors[1] != ''){
+            $('#category-id-error').removeClass('d-none')
+          }
+          if(data.errors[2] != ''){
+            $('#title-error').removeClass('d-none')
+          }
+          if(data.errors[3] != ''){
+            $('#description-error').removeClass('d-none')
+          }
+          if(data.errors[4] != ''){
+            $('#site-url-error').removeClass('d-none')
+          }
+          if(data.errors[5] != ''){
+            $('#price-error').removeClass('d-none')
+          }
+
+        }
+        if(data.photo_success)
+        {
+
+          $('.photo-progress').text('Uploaded');
+          $('.photo-progress').css('width', '100%');
+          $('#photo-success').html('<span class="text-success"><b>'+data.photo_success+'</b></span><br /><br />');
+          $('#photo-success').append(data.image);
+        }
+        if(data.video_success)
+        {
+
+          $('.video-progress').text('Uploaded');
+          $('.video-progress').css('width', '100%');
+          $('#video-success').html('<span class="text-success"><b>'+data.video_success+'</b></span><br /><br />');
+          $('#video-success').append(data.video);
+        }
+        if(data.data_save){
+          $('p.alert-success').removeClass('d-none')
+          $(window).scrollTop(0);
+        }
+      }
+    });
+
+});
+</script>
+
+
 <script type="text/javascript" src="{{ asset('admin/js/imageValidate.js') }}"></script>
 <script src="{{asset('js/scripts/forms/select/form-select2.js')}}"></script>
 
@@ -191,30 +278,30 @@
         // searchable dropdown
     // $('.select2').select2();
 
-        new window.JustValidate('.js-form', {
-        rules: {
-            ingredients: {
-                required: true
-            },
-            title: {
-                required: true
-            },
-            recipe: {
-                required: true
-            },
-        },
-        messages: {
-            ingredients: {
-                required: 'Ingredients are required',
-            },
-            title: {
-                required: 'Title is required',
-            },
-            recipe: {
-                required: 'Recipe description is required',
-            },
-        },
-    });
+    //     new window.JustValidate('.js-form', {
+    //     rules: {
+    //         ingredients: {
+    //             required: true
+    //         },
+    //         title: {
+    //             required: true
+    //         },
+    //         recipe: {
+    //             required: true
+    //         },
+    //     },
+    //     messages: {
+    //         ingredients: {
+    //             required: 'Ingredients are required',
+    //         },
+    //         title: {
+    //             required: 'Title is required',
+    //         },
+    //         recipe: {
+    //             required: 'Recipe description is required',
+    //         },
+    //     },
+    // });
 
       var loadFile = function(event) {
       var output = document.getElementById('output');

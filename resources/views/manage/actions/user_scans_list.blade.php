@@ -1,8 +1,9 @@
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-warning w-50 total-scans" data-toggle="modal" 
+
+<button type="button" class="btn btn-warning w-100 total-scans ml-1" data-toggle="modal" 
 data-target="{{ ($customer->scans_count != 0) ? '#exampleModalCenter' : ''}}">
-  {{ $customer->scans_count }}
+  Scan Details
 </button> 
 
     @if(count($customer->scans))

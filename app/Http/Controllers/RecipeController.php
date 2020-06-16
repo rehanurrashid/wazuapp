@@ -9,6 +9,7 @@ use App\Http\Requests\StoreRecipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Recipe;
+use Validator;
 
 class RecipeController extends Controller
 {
@@ -50,25 +51,57 @@ class RecipeController extends Controller
      */
     public function store(StoreRecipe $request)
     {
+        $rules = array(
+            'title' => 'bail|required',
+            'ingredients' => 'bail|required',
+            'recipe' => 'bail|required',
+            'site_url' => 'bail|required',
+            'price' => 'bail|required',
+         );
+
+         $error = Validator::make($request->all(), $rules);
+
+         if($error->fails())
+         {
+          return response()->json(['errors' => $error->errors()->all()]);
+         }
+
+        $output =array();
+
         $recipe = new Recipe;
 
         if ($request['photo']){
 
             $request['picture'] = $request->file('photo')->store('public/storage');
             $request['picture'] = Storage::url($request['picture']);
-            $request['picture'] = asset($request['picture']);
-            // $filename = $request->file('photo')->hashName();
-            $recipe->image = $request['picture'];
-        }
+            $image_path = asset($request['picture']);
+            $recipe->image = $image_path;
+
+             $output += array(
+                 'photo_success' => 'Image uploaded successfully',
+                 'image'  => '<img width="170px" src="'.$image_path.'" class="img-thumbnail" />'
+                );
+            }
+        
         if ($request['video']){
 
             $request['movie'] = $request->file('video')->store('public/storage');
             $request['movie'] = Storage::url($request['movie']);
-            $request['movie'] = asset($request['movie']);
-            // $filename = $request->file('photo')->hashName();
-            $recipe->video = $request['movie'];
-        }
-        
+            $video_path = asset($request['movie']);
+            $recipe->video = $video_path;
+            $output += array(
+                 'video_success' => 'Video uploaded successfully',
+                 'video'  => '<video controls width="350" class="img-thumbnail">
+
+                          <source src="'.$video_path.'"
+                                  type="video/webm">
+
+                          Sorry, your browser doesnt support embedded videos.
+                      </video>',
+                );
+
+            }
+
         $recipe->title = $request->title;
         $recipe->setAttribute('slug', $request->title);
         $recipe->ingredients = $request->ingredients;
@@ -79,9 +112,10 @@ class RecipeController extends Controller
         $recipe->save();
 
         if($recipe){
-            Session::flash('message', 'Recipe Created Successfully!'); 
-            Session::flash('alert-class', 'alert-success');
-            return redirect('recipes');  
+            $output += array(
+                'data_save' => 'Product Created successfully',
+            );
+            return response()->json($output); 
         } 
     }
 
@@ -118,26 +152,59 @@ class RecipeController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $rules = array(
+            'title' => 'bail|required',
+            'ingredients' => 'bail|required',
+            'recipe' => 'bail|required',
+            'site_url' => 'bail|required',
+            'price' => 'bail|required',
+         );
+
+         $error = Validator::make($request->all(), $rules);
+
+         if($error->fails())
+         {
+          return response()->json(['errors' => $error->errors()->all()]);
+         }
+
+        $output =array();
+
         $recipe = Recipe::find($id);
 
         if ($request['photo']){
 
             $request['picture'] = $request->file('photo')->store('public/storage');
             $request['picture'] = Storage::url($request['picture']);
-            $request['picture'] = asset($request['picture']);
-            // $filename = $request->file('photo')->hashName();
-            $recipe->image = $request['picture'];
-        }
+            $image_path = asset($request['picture']);
+            $recipe->image = $image_path;
+
+             $output += array(
+                 'photo_success' => 'Image uploaded successfully',
+                 'image'  => '<img width="170px" src="'.$image_path.'" class="img-thumbnail" />'
+                );
+            }
+        
         if ($request['video']){
 
             $request['movie'] = $request->file('video')->store('public/storage');
             $request['movie'] = Storage::url($request['movie']);
-            $request['movie'] = asset($request['movie']);
-            // $filename = $request->file('photo')->hashName();
-            $recipe->video = $request['movie'];
-        }
-        
+            $video_path = asset($request['movie']);
+            $recipe->video = $video_path;
+            $output += array(
+                 'video_success' => 'Video uploaded successfully',
+                 'video'  => '<video controls width="350" class="img-thumbnail">
+
+                          <source src="'.$video_path.'"
+                                  type="video/webm">
+
+                          Sorry, your browser doesnt support embedded videos.
+                      </video>',
+                );
+            }
+
         $recipe->title = $request->title;
+        $recipe->setAttribute('slug', $request->title);
         $recipe->ingredients = $request->ingredients;
         $recipe->recipe = $request->recipe;
         $recipe->address = $request->address;
@@ -146,9 +213,10 @@ class RecipeController extends Controller
         $recipe->save();
 
         if($recipe){
-            Session::flash('message', 'Recipe Updated Successfully!'); 
-            Session::flash('alert-class', 'alert-success');
-            return redirect('recipes');  
+            $output += array(
+                'data_save' => 'Product Created successfully',
+            );
+            return response()->json($output); 
         }
     }
 
@@ -160,6 +228,9 @@ class RecipeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $recipe = Recipe::find($id)->delete();
+        if($recipe){
+            return view('manage.recipe.index');
+        }
     }
 }

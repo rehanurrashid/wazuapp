@@ -101,29 +101,60 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProduct $request)
+    public function store(Request $request)
     {
+         $rules = array(
+            'user_id' => 'bail|required',
+            'category_id' => 'bail|required',
+            'title' => 'bail|required',
+            'description' => 'bail|required',
+            'site_url' => 'bail|required',
+            'price' => 'bail|required',
+         );
 
-        $product = new product;
+         $error = Validator::make($request->all(), $rules);
+
+         if($error->fails())
+         {
+          return response()->json(['errors' => $error->errors()->all()]);
+         }
+
+        $output =array();
+
+        $product = new Product;
 
         if ($request['photo']){
 
             $request['picture'] = $request->file('photo')->store('public/storage');
             $request['picture'] = Storage::url($request['picture']);
-            $request['picture'] = asset($request['picture']);
-            // $filename = $request->file('photo')->hashName();
-            $product->image = $request['picture'];
-        }
+            $image_path = asset($request['picture']);
+            $product->image = $image_path;
+
+             $output += array(
+                 'photo_success' => 'Image uploaded successfully',
+                 'image'  => '<img width="170px" src="'.$image_path.'" class="img-thumbnail" />'
+                );
+            }
+        
         if ($request['video']){
 
             $request['movie'] = $request->file('video')->store('public/storage');
             $request['movie'] = Storage::url($request['movie']);
-            $request['movie'] = asset($request['movie']);
-            // $filename = $request->file('photo')->hashName();
-            $product->video = $request['movie'];
-        }
+            $video_path = asset($request['movie']);
+            $product->video = $video_path;
+            $output += array(
+                 'video_success' => 'Video uploaded successfully',
+                 'video'  => '<video controls width="350" class="img-thumbnail">
 
-        
+                          <source src="'.$video_path.'"
+                                  type="video/webm">
+
+                          Sorry, your browser doesnt support embedded videos.
+                      </video>',
+                );
+
+            }
+
         $product->user_id = $request->user_id;
         $product->category_id = $request->category_id;
         $product->setAttribute('slug', $request->title);
@@ -136,9 +167,10 @@ class ProductController extends Controller
         $product->save();
 
         if($product){
-            Session::flash('message', 'Product Created Successfully!');
-            Session::flash('alert-class', 'alert-success');
-            return redirect('products');
+            $output += array(
+                'data_save' => 'Product Created successfully',
+            );
+            return response()->json($output); 
         }
     }
 
@@ -176,26 +208,57 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $rules = array(
+            'user_id' => 'bail|required',
+            'category_id' => 'bail|required',
+            'title' => 'bail|required',
+            'description' => 'bail|required',
+            'site_url' => 'bail|required',
+            'price' => 'bail|required',
+         );
+
+         $error = Validator::make($request->all(), $rules);
+
+         if($error->fails())
+         {
+          return response()->json(['errors' => $error->errors()->all()]);
+         }
+
+        $output =array();
+
         $product = product::find($id);
-         if($request->hasFile('photo')){
-            //storing image
+
+        if ($request['photo']){
 
             $request['picture'] = $request->file('photo')->store('public/storage');
             $request['picture'] = Storage::url($request['picture']);
-            $request['picture'] = asset($request['picture']);
-            // $filename = $request->file('photo')->hashName();
-            $product->image = $request['picture'];
-         }
+            $image_path = asset($request['picture']);
+            $product->image = $image_path;
 
-         if ($request['video']){
+             $output += array(
+                 'photo_success' => 'Image uploaded successfully',
+                 'image'  => '<img width="170px" src="'.$image_path.'" class="img-thumbnail" />'
+                );
+            }
+        
+        if ($request['video']){
 
             $request['movie'] = $request->file('video')->store('public/storage');
             $request['movie'] = Storage::url($request['movie']);
-            $request['movie'] = asset($request['movie']);
-            // $filename = $request->file('photo')->hashName();
-            $product->video = $request['movie'];
-        }
+            $video_path = asset($request['movie']);
+            $product->video = $video_path;
+            $output += array(
+                 'video_success' => 'Video uploaded successfully',
+                 'video'  => '<video controls width="350" class="img-thumbnail">
 
+                          <source src="'.$video_path.'"
+                                  type="video/webm">
+
+                          Sorry, your browser doesnt support embedded videos.
+                      </video>',
+                );
+
+            }
 
         $product->user_id = $request->user_id;
         $product->category_id = $request->category_id;
@@ -208,9 +271,10 @@ class ProductController extends Controller
         $product->save();
 
         if($product){
-            Session::flash('message', 'Product Updated Successfully!');
-            Session::flash('alert-class', 'alert-success');
-            return redirect('products');
+            $output += array(
+                'data_save' => 'Product Updated successfully',
+            );
+            return response()->json($output); 
         }
     }
 
