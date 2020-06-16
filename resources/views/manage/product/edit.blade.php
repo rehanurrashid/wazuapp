@@ -114,9 +114,10 @@
                   <div class="col-12">
                     <div class="form-group">
                       @php $user[''] = 'Please Select Vendor'; @endphp
+
                       {{ Form::select('user_id', $user ,null, ['class' => 'form-control select2', 'style'=> 'margin-bottom:20px;' , 'data-validate-field' => 'user_id' ,'id' => 'user_id']) }}
 
-                      <p id="user-id-error" class="error d-none" for="title" style="color: #B81111"> User id field is required!</p>
+                      <div id="user_id_error" ></div>
 
                     </div>
                   </div>
@@ -133,7 +134,7 @@
                         Form::select('category_id', $category ,null, ['class' => 'form-control select2 ', 'style'=> 'margin-bottom:20px;' , 'data-validate-field' => 'category_id','id' => 'category_id'])
                       }}
 
-                      <p id="category-id-error" class="error d-none" for="title" style="color: #B81111"> Category id field is required!</p>
+                      <div id="category_id_error" ></div>
                     </div>
                   </div>
                   <br>
@@ -142,7 +143,7 @@
                       {{ Form::text('title',old('title'),array('class'=>'form-control', 'style'=> 'margin-bottom:10px;','placeholder'=>'Enter Product Title' ,'id' => 'title','data-validate-field' => 'title')) }}
                       
 
-                      <p id="title-error" class="error d-none" for="title" style="color: #B81111">Title field is required!</p>
+                      <div id="title_error" ></div>
 
                       <div class="form-control-position">
                         <i class="bx bx-user"></i>
@@ -165,7 +166,7 @@
                       {{ Form::text('site_url',old('site_url'),array('class'=>'form-control', 'style'=> 'margin-bottom:10px;','placeholder'=>'Enter Site Url', 'data-validate-field' => 'site_url')) }}
                       
 
-                      <p id="site-url-error" class="error d-none" for="title" style="color: #B81111">Site url field is required!</p>
+                      <div id="site_url_error" ></div>
 
                       <div class="form-control-position">
                         <i class="bx bx-mail-send"></i>
@@ -187,7 +188,7 @@
                     <div class="form-label-group position-relative has-icon-left">
                       {{ Form::text('price',old('price'),array('class'=>'form-control', 'style'=> 'margin-bottom:10px;','placeholder'=>'Enter Product Price' ,'data-validate-field' => 'price')) }}
                       
-                      <p id="price-error" class="error d-none" for="title" style="color: #B81111">Price field is required!</p>
+                      <div id="price_error" ></div>
 
                       <div class="form-control-position">
                         <i class="bx bx-dollar-circle"></i>
@@ -200,7 +201,7 @@
                       {{ Form::textarea('description',old('description'),array('class'=>'form-control', 'style'=> 'margin-bottom:10px;','placeholder'=>'Enter Product Description' ,'data-validate-field' => 'description')) }}
                       
 
-                      <p id="description-error" class="error d-none" for="title" style="color: #B81111">Description field is required!</p>
+                      <div id="description_error" ></div>
                       
                       <div class="form-control-position">
                         <i class="bx bx-mail-send"></i>
@@ -307,29 +308,6 @@
       },
       success:function(data)
       {
-        if(data.errors)
-        {
-          console.log(data.errors)
-          if(data.errors[0] != ''){
-            $('#user-id-error').removeClass('d-none')
-          }
-          if(data.errors[1] != ''){
-            $('#category-id-error').removeClass('d-none')
-          }
-          if(data.errors[2] != ''){
-            $('#title-error').removeClass('d-none')
-          }
-          if(data.errors[3] != ''){
-            $('#description-error').removeClass('d-none')
-          }
-          if(data.errors[4] != ''){
-            $('#site-url-error').removeClass('d-none')
-          }
-          if(data.errors[5] != ''){
-            $('#price-error').removeClass('d-none')
-          }
-
-        }
         if(data.photo_success)
         {
 
@@ -350,7 +328,13 @@
           $('p.alert-success').removeClass('d-none')
           $(window).scrollTop(0);
         }
-      }
+      },
+      error: function (xhr) {
+         $.each(xhr.responseJSON.errors, function(key,value) {
+          console.log(key)
+           $('#'+key+'_error').html('<p class="error text-danger">'+value+'</p');
+       }); 
+      },
     });
 
 });
@@ -366,51 +350,6 @@
 <script src="{{ asset('js/just-validate.min.js') }}"></script>
 <script type="text/javascript">
 
-        // searchable dropdown
-    // $('.select2').select2();
-
-    //     new window.JustValidate('.js-form', {
-    //     rules: {
-    //         user_id: {
-    //             required: true
-    //         },
-    //         category_id: {
-    //             required: true
-    //         },
-    //         title: {
-    //             required: true
-    //         },
-    //         site_url: {
-    //             required: true
-    //         },
-    //         price: {
-    //             required: true
-    //         },
-    //         description: {
-    //             required: true
-    //         },
-    //     },
-    //     messages: {
-    //         user_id: {
-    //             required: 'Please select vendor',
-    //         },
-    //         category_id: {
-    //             required: 'Please select category',
-    //         },
-    //         title: {
-    //             required: 'Title is required',
-    //         },
-    //         site_url: {
-    //             required: 'Site url is required',
-    //         },
-    //         price: {
-    //             required: 'Price is required',
-    //         },
-    //         description: {
-    //             required: 'Description is required',
-    //         },
-    //     },
-    // });
 
     var loadFile = function(event) {
     var output = document.getElementById('output');
@@ -434,6 +373,10 @@
       $(this).prev('div.label-video').find('div.file-name').html(template);
       $(this).parents('div.form-label-group').next('h4.text-info').addClass('d-none')
     })
+
+$(document).ready(function(){
+  
+var timer = null;
 
     $('#reset').click(function(){ 
 
@@ -459,7 +402,15 @@
 
       $('img.img-thumbnail').addClass('d-none')
       $('video.img-thumbnail').addClass('d-none')
-    })
+    function explode(){
+      // alert('')
+      $('button[type="reset"]').click()
+    }
+    timer = setTimeout(explode, 1000);
+
+  })
+  setInterval(function(){ clearTimeout(timer); }, 3000);
+  })
 </script>
 @endsection
 

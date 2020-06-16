@@ -35,7 +35,7 @@
             @if(isset($product))
                 {{ Form::model($product,['method'=>'put','route' => ['products.update',$product->id], 'enctype' =>'multipart/form-data', 'class' => 'js-form']) }}
             @else
-            	{{ Form::open(['route' => 'products.store', 'enctype' =>'multipart/form-data', 'class' => 'js-form','method' => 'post']) }}
+            	{{ Form::open(['route' => 'store-import-products', 'enctype' =>'multipart/form-data', 'class' => 'js-form','method' => 'post']) }}
             @endif
               <div class="form-body">
                 <div class="row">
@@ -43,7 +43,7 @@
                   <div class="col-12">
                     <div class="form-group">
                       @php $user[''] = 'Please Select Vendor'; @endphp
-                      {{ Form::select('user_id', $user ,null, ['class' => 'form-control select2', 'style'=> 'margin-bottom:20px;' , 'data-validate-field' => 'user_id']) }}
+                      {{ Form::select('user_id', $user ,null, ['class' => 'form-control select2', 'style'=> 'margin-bottom:20px;' , 'data-validate-field' => 'user_id','id' => 'user_id']) }}
                     </div>
                   </div>
                   @else
@@ -62,12 +62,12 @@
                     </div>
                     <hr>
                     <div class="form-label-group position-relative has-icon-left text-center">
-                      <div class="">
+                      <div class="label-csv">
 		                  <label for="file-input2" style="cursor: pointer;">
 		                    <img class="modal-img" src="{{asset('images/upload.png')}}" >
 		                  </label>
-		                  <p class="text-muted text-capitalize">Upload .csv File</p><br>
-
+                      <div class="file-name"><p class="text-muted text-capitalize">Upload .csv File</p></div>
+		                  <br>
 		                  {!! $errors->first('products', '<p style="color: #B81111" id="products-error" class="error" for="products">:message</p>') !!}
 
                       <p id="error1" style="display:none; color:#B81111;">
@@ -77,8 +77,8 @@
                       Maximum File Size Limit is 5MB.
                       </p>
 
-		                  <input type="file" name="products" id="file-input2" class="d-none" data-validate-field="products" value="{{old('products')}}">
                     </div>
+                    <input type="file" name="products" id="file-input2" class="d-none" data-validate-field="products" value="{{old('products')}}">
                   </div>
                   <hr>
                 </div>
@@ -136,6 +136,42 @@
             },
         },
     });
+////////////////
+
+    $('#file-input2').change(function(){
+
+      let file_name = $(this)[0].files[0].name;
+      let template = '<p class="text-center text-muted text-capitalize">Upload .csv File</p> <p class="text-center text-muted text-capitalize">'+file_name+'</p> <p class="text-center text-info text-capitalize">File Selected</p>';
+      console.log($(this))
+      $(this).prev('div.label-csv').find('div.file-name').html(template);
+
+      $('.photo-progress').parent('div.progress').removeClass('d-none')
+    })
+//////////////
+$(document).ready(function(){
+
+  var timer = null;
+  $('button[type="reset"]').click(function(){ 
+
+    $("select#user_id").select2({
+        placeholder: "Please Select Vendor"
+    });
+
+    let label_csv = '<p class="text-center text-muted text-capitalize">Upload .csv File</p><p class="text-center text-info text-capitalize">Please Select <span>.csv</span> File!</p>';
+
+    $('div.label-csv').find('div.file-name').html(label_csv)
+    
+    function explode(){
+      // alert('')
+      $('button[type="reset"]').click()
+    }
+    timer = setTimeout(explode, 1000);
+  })
+
+    setInterval(function(){ clearTimeout(timer); }, 3000);
+
+})
+  
 </script>
 @endsection
 

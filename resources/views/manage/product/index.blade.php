@@ -91,6 +91,29 @@
 <script src="{{asset('js/scripts/extensions/toastr.js')}}"></script>
 <script>
     $(function() {
+
+        var buttonCommon = {
+             extend : 'pdfHtml5',
+            exportOptions: {
+                      stripHtml: false,
+                      columns: 'th:not(:last-child)',
+
+             exportOptions: {
+                      stripHtml: false,
+                      //columns: 'th:not(:nth-child(2))',
+                format: {
+                    body: function ( data, row, column, node ) {
+                        // Strip $ from salary column to make it numeric
+                        return column === 4 ?
+                            data.replace( /[$,]/g, '' ) :
+                            data;
+                            console.log(data)
+                    }
+                }
+             }
+            }
+        };
+
         $('#rtable').DataTable({
             processing: true,
             serverSide: true,
@@ -118,7 +141,10 @@
                     'copyHtml5',
                     'excelHtml5',
                     'csvHtml5',
-                    'pdfHtml5'
+                    $.extend( true, {}, buttonCommon, {
+                        extend: 'pdfHtml5',
+
+                    } )
 
                 ],
                 'columnDefs': [

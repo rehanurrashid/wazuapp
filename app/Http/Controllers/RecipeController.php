@@ -49,7 +49,7 @@ class RecipeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRecipe $request)
+    public function store(Request $request)
     {
         $rules = array(
             'title' => 'bail|required',
@@ -63,7 +63,7 @@ class RecipeController extends Controller
 
          if($error->fails())
          {
-          return response()->json(['errors' => $error->errors()->all()]);
+          return response()->json(['errors' => $error->errors()], 422);
          }
 
         $output =array();
@@ -165,7 +165,7 @@ class RecipeController extends Controller
 
          if($error->fails())
          {
-          return response()->json(['errors' => $error->errors()->all()]);
+          return response()->json(['errors' => $error->errors()], 422);
          }
 
         $output =array();
@@ -204,7 +204,6 @@ class RecipeController extends Controller
             }
 
         $recipe->title = $request->title;
-        $recipe->setAttribute('slug', $request->title);
         $recipe->ingredients = $request->ingredients;
         $recipe->recipe = $request->recipe;
         $recipe->address = $request->address;

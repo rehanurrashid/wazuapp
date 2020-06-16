@@ -88,11 +88,14 @@
 <script src="{{asset('js/scripts/extensions/toastr.js')}}"></script>
 <script>
     $(function() {
+
+        // Setup - add a text input to each footer cell
+
         $('#rtable').DataTable({
 
             processing: true,
             serverSide: true,
-            autoWidth: false,
+            autoWidth: true,
             responsive: true,
             ajax: {
               url: '{!! route('customers.index') !!}',

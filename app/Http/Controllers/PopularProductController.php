@@ -61,6 +61,10 @@ class PopularProductController extends Controller
 
                     })
                     ->editColumn('id', 'ID: {{$id}}')
+                    ->editColumn('description',  function ($product) {
+                        return substr($product->description,0,30).'...';
+
+                    })
                     ->setTotalRecords(10)
                     ->rawColumns(['user_name','image'])
                     ->make(true);

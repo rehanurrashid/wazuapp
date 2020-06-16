@@ -113,7 +113,10 @@
                   <div class="col-12">
                     <div class="form-label-group position-relative has-icon-left">
                       {{ Form::text('title',old('title'),array('class'=>'form-control', 'style'=> 'margin-bottom:10px;','placeholder'=>'Enter Recipe Title' ,'id' => 'title','data-validate-field' => 'title')) }}
-                      {!! $errors->first('title', '<p id="title-error" class="error" for="title" style="color: #B81111">:message</p>') !!}
+                      
+
+                      <div id="title_error" ></div>
+                      
                       <div class="form-control-position">
                         <i class="bx bx-user"></i>
                       </div>
@@ -124,8 +127,8 @@
                     <label for="email-id-floating-icon" class="d-none label-tags">INGREDIENTS<span style="color:red;">*</span></label>
                     <div class="form-label-group position-relative has-icon-left">
                       {{ Form::text('ingredients',old('ingredients'),array('class'=>'form-control', 'style'=> 'margin-bottom:10px;','placeholder'=>'Enter Recipe Ingredients', 'data-role' => 'tagsinput' ,'id' => 'ingredients' , 'data-validate-field' => 'ingredients')) }}
-
-                      {!! $errors->first('ingredients', '<p id="ingredients-error" class="error" for="ingredients" style="color: #B81111">:message</p>') !!}
+                      
+                      <div id="ingredients_error" ></div>
 
                       <label for="email-id-floating-icon">Ingredients<span style="color:red;">*</span></label>
                     </div>
@@ -133,7 +136,9 @@
                   <div class="col-12">
                     <div class="form-label-group position-relative has-icon-left">
                       {{ Form::textarea('recipe',old('recipe'),array('class'=>'form-control', 'style'=> 'margin-bottom:10px;','placeholder'=>'Enter Recipe Description' ,'data-validate-field' => 'recipe')) }}
-                      {!! $errors->first('recipe', '<p style="color: #B81111" id="recipe-error" class="error" for="recipe">:message</p>') !!}
+                      
+                      <div id="recipe_error" ></div>
+
                       <div class="form-control-position">
                         <i class="bx bx-mail-send"></i>
                       </div>
@@ -143,7 +148,9 @@
                   <div class="col-12">
                     <div class="form-label-group position-relative has-icon-left">
                       {{ Form::text('site_url',old('site_url'),array('class'=>'form-control', 'style'=> 'margin-bottom:10px;','placeholder'=>'Enter Site Url', 'data-validate-field' => 'site_url')) }}
-                      {!! $errors->first('site_url', '<p id="site_url-error" class="error" for="site_url" style="color: #B81111">:message</p>') !!}
+                      
+                      <div id="site_url_error" ></div>
+
                       <div class="form-control-position">
                         <i class="bx bx-mail-send"></i>
                       </div>
@@ -164,7 +171,8 @@
                     <div class="form-label-group position-relative has-icon-left">
                       {{ Form::text('price',old('price'),array('class'=>'form-control price', 'style'=> 'margin-bottom:10px;','placeholder'=>'Enter Recipe Price' ,'data-validate-field' => 'price')) }}
 
-                      {!! $errors->first('price', '<p style="color: #B81111" id="price-error" class="error" for="price">:message</p>') !!}
+                      <div id="price_error" ></div>
+
                       <div class="form-control-position">
                         <i class="bx bx-dollar-circle"></i>
                       </div>
@@ -216,29 +224,7 @@
       },
       success:function(data)
       {
-        if(data.errors)
-        {
-          console.log(data.errors)
-          if(data.errors[0] != ''){
-            $('#user-id-error').removeClass('d-none')
-          }
-          if(data.errors[1] != ''){
-            $('#category-id-error').removeClass('d-none')
-          }
-          if(data.errors[2] != ''){
-            $('#title-error').removeClass('d-none')
-          }
-          if(data.errors[3] != ''){
-            $('#description-error').removeClass('d-none')
-          }
-          if(data.errors[4] != ''){
-            $('#site-url-error').removeClass('d-none')
-          }
-          if(data.errors[5] != ''){
-            $('#price-error').removeClass('d-none')
-          }
 
-        }
         if(data.photo_success)
         {
 
@@ -259,7 +245,14 @@
           $('p.alert-success').removeClass('d-none')
           $(window).scrollTop(0);
         }
-      }
+      },
+      error: function (xhr) {
+        console.log(xhr.responseJSON.errors)
+         $.each(xhr.responseJSON.errors, function(key,value) {
+          console.log(key)
+           $('#'+key+'_error').html('<p class="error text-danger">'+value+'</p');
+       }); 
+      },
     });
 
 });
@@ -274,34 +267,6 @@
 
 <script src="{{ asset('js/just-validate.min.js') }}"></script>
 <script type="text/javascript">
-
-        // searchable dropdown
-    // $('.select2').select2();
-
-    //     new window.JustValidate('.js-form', {
-    //     rules: {
-    //         ingredients: {
-    //             required: true
-    //         },
-    //         title: {
-    //             required: true
-    //         },
-    //         recipe: {
-    //             required: true
-    //         },
-    //     },
-    //     messages: {
-    //         ingredients: {
-    //             required: 'Ingredients are required',
-    //         },
-    //         title: {
-    //             required: 'Title is required',
-    //         },
-    //         recipe: {
-    //             required: 'Recipe description is required',
-    //         },
-    //     },
-    // });
 
       var loadFile = function(event) {
       var output = document.getElementById('output');

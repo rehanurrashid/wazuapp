@@ -112,11 +112,15 @@ class ProductController extends Controller
             'price' => 'bail|required',
          );
 
-         $error = Validator::make($request->all(), $rules);
+         $messages = array(
+                'user_id.required' => 'Please select vendor'
+            );
+
+         $error = Validator::make($request->all(), $rules, $messages);
 
          if($error->fails())
          {
-          return response()->json(['errors' => $error->errors()->all()]);
+          return response()->json(['errors' => $error->errors()], 422);
          }
 
         $output =array();
@@ -216,12 +220,16 @@ class ProductController extends Controller
             'site_url' => 'bail|required',
             'price' => 'bail|required',
          );
+        
+         $messages = array(
+                'user_id.required' => 'Please select vendor'
+            );
 
-         $error = Validator::make($request->all(), $rules);
+         $error = Validator::make($request->all(), $rules, $messages);
 
          if($error->fails())
          {
-          return response()->json(['errors' => $error->errors()->all()]);
+          return response()->json(['errors' => $error->errors()], 422);
          }
 
         $output =array();
@@ -313,10 +321,12 @@ class ProductController extends Controller
         $rows = array_map("str_getcsv", explode("\n", $csvData));
         $header = array_shift($rows);
 
+
         foreach($rows as $row){
             $product = new product;
             if ($row[0] !== null){
                 $row = array_combine($header, $row);
+
                 $cat = Category::where('name',$row['category'])->first();
                 if ($cat){
                     $row['category'] = $cat->id;
@@ -331,7 +341,7 @@ class ProductController extends Controller
                 $product->setAttribute('slug', $row['title']);
                 $product->description = $row['description'];
                 $product->image = $row['image'];
-                $product->product_id = $row['product_id'];
+                // $product->product_id = $row['product_id'];
                 $product->price = $row['price'] ? $row['price']:0.0;
                 $product->site_url = $row['site_url'];
                 $product->tags = $row['tags'];
